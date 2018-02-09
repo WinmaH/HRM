@@ -1,0 +1,35 @@
+body {
+    background: #e6e6e6;
+}
+
+.main-content {
+    margin-left: 210px;
+    padding: 1em;
+}
+
+#login_grid{
+	height: 100%;
+}
+
+/* Dashboard styles -------------------------*/
+.ui.grid.dashboard .ui.cards .extra.content .buttons .button{
+	border-radius: 0.28571429rem;
+	margin: 4px;
+	width: 45%;
+}
+.ui.grid.dashboard .cards .detail{
+	margin-top: 0.4em;
+}
+
+/* Table styles -------------------------*/
+
+.ui.table .button{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+/* project  styles -------------------------*/
+.ui.grid.project.details .detail{
+    margin-top: 0.5em;
+    font-size:1.1em ;
+}
