@@ -2647,6 +2647,7 @@ input::selection {
   background-color: transparent;
   box-shadow: 0px 0px 0px 2px #54C8FF inset !important;
   color: #54C8FF;
+
 }
 
 .ui.inverted.blue.buttons .button:hover,

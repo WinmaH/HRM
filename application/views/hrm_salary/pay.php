@@ -27,7 +27,7 @@
                             <td><?php echo $c['LastName']; ?></td>
                             <td><?php echo 'Rs. '.$c['Salary'].'.00/='; ?></td>
                             <td>
-                                <a href="<?php echo site_url('Hrm_employee/open/'.$c['User_ID']); ?>" class="ui inverted yellow button" ><i class="Thumbs Up icon"></i>Pay</a>
+                                <a href="<?php echo site_url('Hrm_salary/pay_form/'.$c['User_ID'].'/'.$c['FirstName']); ?>" class="ui inverted yellow button" ><i class="Thumbs Up icon"></i>Pay</a>
                             </td>
 
 

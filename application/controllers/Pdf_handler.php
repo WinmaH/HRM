@@ -31,12 +31,18 @@ class Pdf_handler extends CI_Controller
         //@readfile($file);
 
 
-       // $this->aauth->create_user('chandramali@gmail.com','123456','chandramali');
-        echo $this->aauth->get_user_id('chandramali@gmail.com');
 
-        $date = "2010-08-12";
-        $d = date_parse_from_format("Y-m-d", $date);
-        echo $d["month"];
+
+        $txt="My name is winma.\n\n winma";
+        echo nl2br($txt);
+        $txt=$txt."My name is Neelanjana";
+        print_r($txt);
+
+       // $this->aauth->create_user('chandramali@gmail.com','123456','chandramali');
+        //echo $this->aauth->get_user_id('chandramali@gmail.com');
+        //$date = "2010-08-12";
+        //$d = date_parse_from_format("Y-m-d", $date);
+        //echo $d["month"];
     }
 
 }

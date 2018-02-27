@@ -36,5 +36,53 @@ function get_salary_not_paid_count($year,$month){
 
     }
 
+    function get_etf(){
+        $query=$this->db->query("SELECT * FROM etf");
+        $etf=$query->result_array();
+        foreach ($etf as $e){
+            $v=$e['Rate'];
+        }
+        RETURN $v;
+
+    }
+
+    function get_epf(){
+        $query=$this->db->query("SELECT * FROM epf");
+        $epf=$query->result_array();
+        foreach ($epf as $e){
+            $v=$e['Rate'];
+        }
+        RETURN $v;
+    }
+
+    function get_monthly_salary($id){
+        $query=$this->db->query("SELECT * FROM employee WHERE User_ID='$id'");
+        $epf=$query->result_array();
+        foreach ($epf as $e){
+            $v=$e['Salary'];
+        }
+        RETURN $v;
+
+    }
+    function get_basic(){
+        $query=$this->db->query("SELECT * FROM basic");
+        $epf=$query->result_array();
+        foreach ($epf as $e){
+            $v=$e['Basic_salary'];
+        }
+        RETURN $v;
+
+
+    }
+    function salary_payment($params1){
+        $this->db->insert('salary',$params1);
+
+        return $this->db->insert_id();
+    }
+    function check($id,$month,$year){
+
+        $query=$this->db->query("SELECT * FROM salary WHERE User_ID='$id' AND Year='$year' AND Month='$month'");
+        return $query->result_array();
+    }
 
 }

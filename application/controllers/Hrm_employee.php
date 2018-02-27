@@ -22,7 +22,6 @@ class Hrm_employee extends CI_Controller{
         $per_page = 25;
         $count = $this->Hrm_employee_model->get_employee_count();
 
-        echo $count;
         $pages = ceil($count/$per_page);
 
         $data['clients'] = $this->Hrm_employee_model->get_paged_employee(($page-1)*$per_page, $per_page);
@@ -45,112 +44,145 @@ class Hrm_employee extends CI_Controller{
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules("email","Email","trim|required|valid_email");
-       $this->form_validation->set_rules("first_name","First Name","required");
+        $this->form_validation->set_rules("first_name","First Name","required");
         $this->form_validation->set_rules("last_name","Last Name","required");
         $this->form_validation->set_rules("gender","Gender","required");
         $this->form_validation->set_rules("birthday","Birthday","required");
+        $this->form_validation->set_rules("nationality","nationality","required");
+        $this->form_validation->set_rules("bloodgroup","D","required");
         //$this->form_validation->set_rules("nic","Identity Card","required|greater_than_equal_to[10]|less_than_equal_to[12]");
         $this->form_validation->set_rules("postbox","Post Box","required");
         $this->form_validation->set_rules("city","City","required");
         $this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[10]");
         $this->form_validation->set_rules("additional","Additional Fee","required");
-       // $this->form_validation->set_rules("cv","CV","required");
-        //$this->form_validation->set_rules("image","Image","required");
 
         if($this->form_validation->run()){
             // if there are no errors add to the database
+            $err="";
             $cv='';
             $image='';
-            if(!empty($_FILES['cv']['name'])) {
 
-                $config['upload_path'] = './files/';
-                $config['allowed_types'] = 'pdf';
-                $config['file_name'] = $_FILES['cv']['name'];
 
-                $this->load->library('upload', $config);
-                $this->upload->initialize($config);
+            try {
 
-                if ($this->upload->do_upload('cv')) {
-                    $uploadData = $this->upload->data();
-                    $cv = $uploadData['file_name'];
+                if (!empty($_FILES['cv']['name'])) {
+
+                        $config['upload_path'] = './files/';
+                        $config['allowed_types'] = 'pdf';
+                        $config['file_name'] = $_FILES['cv']['name'];
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+
+                        if ($this->upload->do_upload('cv')) {
+                            $uploadData = $this->upload->data();
+                            $cv = $uploadData['file_name'];
+                        }
                 }
-            }
 
+                if (!empty($_FILES['image']['name'])) {
 
-            if(!empty($_FILES['image']['name'])) {
+                    $config['upload_path'] = './files/';
+                    $config['allowed_types'] = 'jpeg|png|jpg|gif';
+                    $config['file_name'] = $_FILES['image']['name'];
 
-                $config['upload_path'] = './files/';
-                $config['allowed_types'] = 'jpeg|png|jpg|gif';
-                $config['file_name'] = $_FILES['image']['name'];
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
 
-                $this->load->library('upload', $config);
-                $this->upload->initialize($config);
-
-                if ($this->upload->do_upload('image')) {
-                    $uploadData = $this->upload->data();
-                    $image = $uploadData['file_name'];
+                    if ($this->upload->do_upload('image')) {
+                        $uploadData = $this->upload->data();
+                        $image = $uploadData['file_name'];
+                    }
                 }
+
+
+                if ($cv == '') {
+                    $err = $err . "Enter a pdf document for the cv \n";
+
+                }
+
+                if ($image == '') {
+                    $err = $err . "Enter an image \n";
+
+                }
+
+
+                if ($err != "") {
+
+
+                    $data['_view'] = 'hrm_employee/add';
+                    $data['designation'] = $this->Hrm_employee_model->get_designation();
+                    $data['basic'] = $this->Hrm_employee_model->get_basic();
+                    $data['err'] = $err;
+                    $this->load->view('hrm_layouts/main', $data);
+
+                } else {
+
+
+                    $first_name = $this->input->post('first_name');
+                    $email = $this->input->post('email');
+
+
+                    $cnt = $this->Hrm_employee_model->count_employee();
+                    $pre = substr($first_name, 0, 1);
+                    $len = strlen($cnt);
+                    $_id1 = str_repeat('0', 4 - $len);
+                    $year = date('Y');
+                    $month=date('m');
+                    $day=date('d');
+                    $id = $year . $_id1 . $cnt . $pre;
+
+
+                    $params1 = array(
+                        'FirstName' => $this->input->post('first_name'),
+                        'MiddleName' => $this->input->post('middle_name'),
+                        'LastName' => $this->input->post('last_name'),
+                        'Gender' => $this->input->post('gender'),
+                        'Birthday' => $this->input->post('birthday'),
+                        'NIC' => $this->input->post('nic'),
+                        'PostBox' => $this->input->post('postbox'),
+                        'Street' => $this->input->post('street'),
+                        'City' => $this->input->post('city'),
+                        'TP' => $this->input->post('mobile'),
+                        'E_mail' => $this->input->post('email'),
+                        'Nationality' => $this->input->post('nationality'),
+                        'Religion' => $this->input->post('religion'),
+                        'BloodGroup' => $this->input->post('bloodgroup'),
+
+
+                        'User_ID' => $id,
+                        //'password' => '1234',
+                        'Type' => 'E',
+                        'Image' => $image
+                    );
+                    $params2 = array(
+                        'User_ID' => $id,
+                        'Designation' => $this->input->post('designation'),
+                        'CV' => $cv,
+                        'Register_year' => $year,
+                        'Register_month' => $month,
+                        'Register_date'=>$day,
+
+                        'Salary' => ($this->input->post('basic') + $this->input->post('additional'))
+
+                    );
+
+                    $this->Hrm_employee_model->add_employee($params1, $params2);
+                    $this->aauth->create_user($email, '123456', $id);
+
+                    // 'basic' => $this->input->post('basic'),
+                    //  'additional' => $this->input->post('additional'),
+                }
+
+            } catch (Exception $e){
+                $data['_view'] = 'hrm_employee/add';
+                $data['designation'] = $this->Hrm_employee_model->get_designation();
+                $data['basic'] = $this->Hrm_employee_model->get_basic();
+                $data['err'] = $e;
+                $this->load->view('hrm_layouts/main', $data);
+
             }
 
-
-
-
-
-            if($cv==""){
-                $err_cv="Enter a pdf document for the cv";
-                $data['cv_err']=$err_cv;
-            }
-
-            $first_name = $this->input->post('first_name');
-            $email=$this->input->post('email');
-
-
-
-            $cnt=$this->Hrm_employee_model->count_employee();
-            $pre = substr($first_name, 0, 1);
-            $len=strlen($cnt);
-            $_id1=str_repeat('0',4-$len);
-            $year = date('Y');
-            $id=$year.$_id1.$cnt.$pre;
-
-
-            $params1 = array(
-                'FirstName' => $this->input->post('first_name'),
-            'MiddleName' => $this->input->post('middle_name'),
-            'LastName' => $this->input->post('last_name'),
-            'Gender' => $this->input->post('gender'),
-            'Birthday' => $this->input->post('birthday'),
-            'NIC' => $this->input->post('nic'),
-            'PostBox' => $this->input->post('postbox'),
-            'Street' => $this->input->post('street'),
-            'City' => $this->input->post('city'),
-            'TP' => $this->input->post('mobile'),
-            'E_mail' => $this->input->post('email'),
-            'Nationality' => $this->input->post('nationality'),
-            'Religion' => $this->input->post('religion'),
-            'BloodGroup' => $this->input->post('bloodgroup'),
-
-
-                'User_ID'=>$id,
-            'password'=>'1234',
-            'Type'=>'E',
-                'Image'=>$image
-            );
-            $params2=array(
-                'User_ID'=>$id,
-                'Designation' => $this->input->post('designation'),
-                'CV'=>$cv,
-                'Salary'=>($this->input->post('basic')+$this->input->post('additional'))
-
-            );
-
-            $this->Hrm_employee_model->add_employee($params1,$params2);
-            $this->aauth->create_user($email,'123456',$id);
-           // 'basic' => $this->input->post('basic'),
-          //  'additional' => $this->input->post('additional'),
-
-
-            die("SAVE");
         } else{
     // echo validation_errors('<div class="error">', '</div>');
 
@@ -201,16 +233,16 @@ class Hrm_employee extends CI_Controller{
 
          $this->load->library('form_validation');
          $this->form_validation->set_rules("email","Email","trim|required|valid_email");
-         // $this->form_validation->set_rules("first_name","First Name","required");
-         //$this->form_validation->set_rules("last_name","Last Name","required");
-         //$this->form_validation->set_rules("gender","Gender","required");
-         //$this->form_validation->set_rules("birthday","Birthday","required");
+         $this->form_validation->set_rules("first_name","First Name","required");
+         $this->form_validation->set_rules("last_name","Last Name","required");
+         $this->form_validation->set_rules("gender","Gender","required");
+         $this->form_validation->set_rules("birthday","Birthday","required");
          // $this->form_validation->set_rules("nic","Identity Card","required|greater_than_equal_to[10]|less_than_equal_to[12]");
-         // $this->form_validation->set_rules("postbox","Post Box","required");
-         // $this->form_validation->set_rules("city","City","required");
-         //$this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[10]");
-         //$this->form_validation->set_rules("additional","Additional Fee","required");
-         //$this->form_validation->set_rules("cv","CV","required");
+          $this->form_validation->set_rules("postbox","Post Box","required");
+         $this->form_validation->set_rules("city","City","required");
+         $this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[10]");
+         $this->form_validation->set_rules("additional","Additional Fee","required");
+         $this->form_validation->set_rules("cv","CV","required");
 
 
          if($this->form_validation->run()){
@@ -236,7 +268,7 @@ class Hrm_employee extends CI_Controller{
 
 
                  //'User_ID'=>$User_ID,
-                 'password'=>'1234',
+                 //'password'=>'1234',
 
 
              );

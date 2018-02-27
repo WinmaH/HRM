@@ -51,6 +51,7 @@ foreach ($user as $u) {
                 <?php echo form_open_multipart('Hrm_employee/edit_employee/'.$User_ID,array("class"=>"ui form")); ?>
                 <div class="ui form">
 
+                    <div class="two fields">
                     <div class="field">
                         <label for="first_name">First Name:</label>
                         <input type="text" name="first_name" value="<?php echo $first; ?>"  id="first_name" />
@@ -61,15 +62,19 @@ foreach ($user as $u) {
                         <input type="text" name="middle_name" value="<?php echo $middle; ?>"  id="middle_name" />
                     </div>
 
+                    </div>
+
                     <div class="field">
                         <label for="last_name">Last Name:</label>
                         <input type="text" name="last_name" value="<?php echo $last; ?>"  id="last_name" />
                     </div>
 
 
+
+                    <div class="two fields">
                     <div class="field">
                         <label for="gender">Gender:</label>
-                        <select name="gender" data-value="<?php echo $gender?>"  >
+                        <select name="gender" data-value="<?php echo $gender?>" class="ui dropdown"  >
                             <option value="Male" <?php if($gender=='Male'):?>selected="selected"<?php endif;?>> Male </option>
                             <option value="Female" <?php if($gender=='Female'):?>selected="selected"<?php endif;?>> Female </option>
                         </select>
@@ -81,10 +86,14 @@ foreach ($user as $u) {
                         <input type="date" name="birthday" value="<?php echo $day; ?>"  id="birthday" />
                     </div>
 
+                    </div>
+
                     <div class="field">
                         <label for="nic">NIC:</label>
                         <input type="text" name="nic" value="<?php echo $nic; ?>"  id="nic" />
                     </div>
+
+                    <div class="two fields">
 
                     <div class="field">
                         <label for="postbox">Post Box:</label>
@@ -95,10 +104,15 @@ foreach ($user as $u) {
                         <input type="text" name="street" value="<?php echo $street; ?>"  id="street" />
                     </div>
 
+                    </div>
+
                     <div class="field">
                         <label for="name">City:</label>
                         <input type="text" name="city" value="<?php echo $city; ?>"  id="city" />
                     </div>
+
+
+                    <div class="two fields">
                     <div class="field">
                         <label for="name">Mobile no:</label>
                         <input type="number" name="mobile" value="<?php echo $tp; ?>"  id="mobile" />
@@ -110,6 +124,10 @@ foreach ($user as $u) {
                         <label for="email">Email:</label>
                         <input type="text" name="email" value="<?php echo $email; ?>"  id="email" />
                     </div>
+                    </div>
+
+
+                    <div class="two fields">
 
                     <div class="field">
                         <label for="email">Nationality:</label>
@@ -121,18 +139,18 @@ foreach ($user as $u) {
 
                     <div class="field">
                         <label for="email">Religion:</label>
-                        <select name="religion">
+                        <select name="religion" class="ui dropdown">
                             <option value="Buddhism" <?php if($religion=='Buddhism'):?>selected="selected"<?php endif;?>>Buddhism</option>
-                            <option value="Hinduism" <?php if($religion=='Hinduism'):?>selected="selected"<?php endif;?>Hinduism</option>
-                            <option value="Islam" <?php if($religion=='Islam'):?>selected="selected"<?php endif;?>Islam</option>
-                            <option value="Christian" <?php if($religion=='Christian'):?>selected="selected"<?php endif;?>Christian</option>
-                            <option value="Other" <?php if($religion=='Other'):?>selected="selected"<?php endif;?>Other</option>
+                            <option value="Hinduism" <?php if($religion=='Hinduism'):?>selected="selected"<?php endif;?>>Hinduism</option>
+                            <option value="Islam" <?php if($religion=='Islam'):?>selected="selected"<?php endif;?> >Islam</option>
+                            <option value="Christian" <?php if($religion=='Christian'):?>selected="selected"<?php endif;?>>Christian</option>
+                            <option value="Other" <?php if($religion=='Other'):?>selected="selected"<?php endif;?>>Other</option>
                         </select>
                     </div>
-
+                    </div>
                     <div class="field">
                         <label for="email">Blood Group:</label>
-                        <select name="bloodgroup">
+                        <select name="bloodgroup" class="ui dropdown">
                             <option value="A-" <?php if($blood=='A-'):?>selected="selected"<?php endif;?>>A-</option>
                             <option value="A+" <?php if($blood=='A+'):?>selected="selected"<?php endif;?>>A+</option>
                             <option value="B-" <?php if($blood=='B-'):?>selected="selected"<?php endif;?> >B-</option>
@@ -147,7 +165,7 @@ foreach ($user as $u) {
                     <div class="field">
                         <label for="email">Designation:</label>
 
-                        <select name="designation">
+                        <select name="designation" class="ui dropdown">
                             <?php foreach($designation as $d){ ?>
                                 <option value="<?php echo $d['Title'];?>" <?php if($des==$d['Title']):?>selected="selected"<?php endif;?>><?php echo $d['Title'];?></option>
                             <?php }?>

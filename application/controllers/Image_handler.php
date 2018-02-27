@@ -8,11 +8,25 @@
  */
 class Image_handler extends CI_Controller
 {
-    function load(){
 
-       $this->load->view('hrm_templates/header');
-       $this->load->view('hrm_layouts/side_bars');
-        $this->load->view('view');
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('pdf_report');
+    }
+
+    public function index(){
+        //$data['title']="Salary Sheet";
+        $data['_view']='leaves/employee_notification';
+        $this->load->view('hrm_layouts/main',$data);
+
+        $this->load->view('hrm_templates/header',$data);
+
+        //$data['designation']=$this->Hrm_employee_model->get_designation();
+
+        //$this->load->view('hrm_templates/footer');
+
+
     }
 
 }

@@ -5,7 +5,7 @@ $this->load->view('hrm_templates/header',$data);
 
 <?php
 
-     $this->load->view('hrm_layouts/side_bars');
+    $this->load->view('hrm_layouts/side_bars');
 if(isset($designation)){
     $data['designation']=$designation;
 }
@@ -20,6 +20,34 @@ if(isset($user)){
     $data['user']=$user;
 }
 
+if(isset($taken_half)){
+    $data['taken_half']=$taken_half;
+}
+
+if(isset($taken_full)){
+    $data['taken_full']=$taken_full;
+}
+
+if(isset($max_full)){
+    $data['max_full']=$max_full;
+}
+if(isset($success)){
+    $data['success']=$success;
+}
+
+if(isset($max_half)){
+    $data['max_half']=$max_half;
+}
+if(isset($name)){
+    $data['name']=$name;
+}
+if(isset($id)){
+    $data['id']=$id;
+}
+
+if(isset($params1)){
+    $data['params1']=$params1;
+}
 ?>
 <div class="main-content">
     <?php	if(isset($_view) && $_view)

@@ -726,7 +726,12 @@ class Aauth {
 				$this->aauth_db->update($this->config_vars['users'], $data);
 			}
 
-			echo $data['pass'];
+
+
+			//getting the password
+
+
+			//echo $data['pass'];
 
 			return $user_id;
 

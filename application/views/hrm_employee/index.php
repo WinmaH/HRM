@@ -39,15 +39,15 @@
                             <td><?php echo $c['E_mail']; ?></td>
 
                             <td>
-                            <a href="<?php echo site_url('Hrm_employee/open/'.$c['User_ID']); ?>" class="ui inverted blue button" ><i class="Address Book icon"></i>View</a>
+                            <a href="<?php echo site_url('Hrm_employee/open/'.$c['User_ID']); ?>" class="ui inverted blue button" >View</a>
                             </td>
                             <td>
-                                <a href="<?php echo site_url('Hrm_employee/edit/'.$c['User_ID']); ?>" class="ui inverted purple button" ><i class="edit icon"></i>Edit</a>
+                                <a href="<?php echo site_url('Hrm_employee/edit/'.$c['User_ID']); ?>" class="ui inverted purple button" >Edit</a>
 
                             </td>
 
                             <td>
-                                <a href="<?php echo site_url('Hrm_employee/full/'.$c['User_ID']); ?>" class="ui inverted green button" ><i class="Browser icon"></i>View</a>
+                                <a href="<?php echo site_url('Hrm_employee/full/'.$c['User_ID']); ?>" class="ui inverted green button" >View</a>
 
                             </td>
                         </tr>
