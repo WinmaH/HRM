@@ -3,7 +3,7 @@
 
 
 <?php
-$addi=($params2['additional']/28)*(28-$params2['no_pay_days']);
+$addi=($params2['additional']/20)*(20-$params2['no_pay_days']);
 $et=($addi+$params2['basic'])*$params2['etf']/100;
 $ep=($addi+$params2['basic'])*$params2['epf']/100;
 $id=$params1['id'];
@@ -45,7 +45,7 @@ $year=$params1['year'];
                     <div class="two fields">
                         <div class="field">
                             <label for="cutoffs">No Pay Leaves taken:</label>
-                            <input type="number" name="no_pay" value="<?php echo $params2['no_pay_days'];?>"  id="last_name" />
+                            <input type="number" name="no_pay" value="<?php echo $params2['no_pay_days'];?>"  id="last_name"  readonly/>
                         </div>
 
                     </div>
@@ -55,7 +55,7 @@ $year=$params1['year'];
                             <label for="advances">Basic:</label>
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="number" name="advances" value="<?php echo $params2['basic']; ?>"  id="last_name" />
+                                <input type="number" name="advances" value="<?php echo $params2['basic']; ?>"  id="last_name"  readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ $year=$params1['year'];
                             <label for="cutoffs"> Additional Salary considering the leaves taken:</label>
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="number" name="additional" value="<?php echo ($params2['additional']/28)*(28-$params2['no_pay_days']) ?>"  id="last_name" />
+                                <input type="number" name="additional" value="<?php echo ($params2['additional']/28)*(28-$params2['no_pay_days']) ?>"  id="last_name" readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
 
@@ -81,7 +81,7 @@ $year=$params1['year'];
                             <label for="advances">Advances for the Month:</label>
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="number" name="advances" value="<?php echo $params1['advances']; ?>"  id="last_name" />
+                                <input type="number" name="advances" value="<?php echo $params1['advances']; ?>"  id="last_name" readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
 
@@ -91,7 +91,7 @@ $year=$params1['year'];
                             <label for="cutoffs">Cut-offs for the Month:</label>
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="number" name="cutoffs" value="<?php echo $params1['cutoffs']; ?>"  id="last_name" />
+                                <input type="number" name="cutoffs" value="<?php echo $params1['cutoffs']; ?>"  id="last_name" readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ $year=$params1['year'];
                             <label for="month">ETF Allocation:</label>
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="text" name="etf" value="<?php echo $et;?>"  id="last_name" />
+                                <input type="text" name="etf" value="<?php echo $et;?>"  id="last_name" readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
 
@@ -111,7 +111,7 @@ $year=$params1['year'];
                             <label for="year">EPF Allocation:</label>
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="number" name="epf" value="<?php  echo $ep;?>"  id="last_name" />
+                                <input type="number" name="epf" value="<?php  echo $ep;?>"  id="last_name" readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
 
@@ -126,7 +126,7 @@ $year=$params1['year'];
 
                             <div class="ui right labeled input">
                                 <label for="amount" class="ui label">Rs</label>
-                                <input type="text" name="total" value="<?php echo $addi+$params2['basic']-$ep-$et+$params1['advances']-$params1['cutoffs'];?>"  id="last_name" />
+                                <input type="text" name="total" value="<?php echo $addi+$params2['basic']-$ep-$et+$params1['advances']-$params1['cutoffs'];?>"  id="last_name" readonly/>
                                 <div class="ui basic label">.00</div>
                             </div>
                         </div>

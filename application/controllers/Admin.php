@@ -8,6 +8,7 @@
  */
 class Admin extends CI_Controller
 {
+    //load main admin window
     public function index(){
         parent::__construct();
         $this->load->view('hrm_admin/main');

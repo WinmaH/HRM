@@ -177,12 +177,22 @@
 
                     <div class="field">
                         <label for="email">Basic Salary:</label>
-                        <input type="text" name="basic" value="<?php foreach ($basic as $b){echo $b['Basic_salary'];} ?>"  id="basic" readonly />
+                        <div class="ui right labeled input">
+                            <label for="amount" class="ui label">Rs</label>
+                            <input type="text" name="basic" value="<?php foreach ($basic as $b){echo $b['Basic_salary'];} ?>"  id="basic" readonly />
+                            <div class="ui basic label">.00</div>
+                        </div>
                     </div>
+
+
 
                     <div class="field">
                         <label for="email">Additional Salary:</label>
-                        <input type="text" name="additional" value="<?php  echo $this->input->post('additional');?>"  id="additional" />
+                        <div class="ui right labeled input">
+                            <label for="amount" class="ui label">Rs</label>
+                            <input type="text" name="additional" value="<?php  echo $this->input->post('additional');?>"  id="additional" />
+                            <div class="ui basic label">.00</div>
+                        </div>
                     </div>
 
                     </div>

@@ -20,6 +20,13 @@ if(isset($user)){
     $data['user']=$user;
 }
 
+if(isset($Program_ID)){
+    $data['Program_ID']=$Program_ID;
+}
+if(isset($male)){
+    $data['male']=$male;
+}
+
 if(isset($taken_half)){
     $data['taken_half']=$taken_half;
 }
@@ -40,6 +47,9 @@ if(isset($max_half)){
 }
 if(isset($name)){
     $data['name']=$name;
+}
+if(isset($total)){
+    $data['total']=$total;
 }
 if(isset($id)){
     $data['id']=$id;

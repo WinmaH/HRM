@@ -14,6 +14,7 @@
         <a class="item" href="<?php echo base_url('Hrm_salary/index'); ?>"><i class="Dollar icon"></i>Salary Payments</a>
         <a class="item" href="<?php echo base_url('Hrm_paysheet_handler/index'); ?>"><i class="Newspaper icon"></i>Pay Sheets</a>
         <a class="item" href="<?php echo base_url('Hrm_Notification/show_admin_not'); ?>"><i class="Announcement icon"></i>Leave Notifications</a>
+        <a class="item" href="<?php echo base_url('Hrm_training/load'); ?>"><i class="chart line icon"></i>Training Programs</a>
 
     <?php }
 

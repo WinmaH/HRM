@@ -15,15 +15,11 @@ class User_model extends CI_model
     public function __construct() {
         parent::__construct();
        $this->load->library("Aauth");
-
-
     }
 
+    //check whether the user is valid using the authentication library
     public function login($identifier, $pass, $remember){
-
         return $this->aauth->login($identifier, $pass, $remember);
-
-
     }
 
 }

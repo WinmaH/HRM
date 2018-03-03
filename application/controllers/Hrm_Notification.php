@@ -15,6 +15,7 @@ class Hrm_Notification extends CI_Controller
 
     }
 
+    // get admin notifications
     public function show_admin_not(){
         $data['title']="Notifications";
         $data['_view']='leaves/admin_notification';
@@ -23,7 +24,6 @@ class Hrm_Notification extends CI_Controller
         $this->load->view('hrm_layouts/main',$data);
         $this->load->view('hrm_templates/footer');
     }
-
 
 
     public function show_employee_not(){

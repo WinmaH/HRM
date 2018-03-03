@@ -25,83 +25,108 @@ if(isset($user)){
 
     <div class="ui grid">
         <div class="sixteen wide column">
-            <div class="ui segments" align="center">
+
                 <div class="ui segment">
-                    <h3 class="ui header">Employees Full Details</h3>
+                    <h3 class="ui header">Employee Details</h3>
                 </div>
-                <div class="ui segment">
 
-                    <div class="ui card ">
-                        <div class="image">
-                            <img src="<?=base_url($image )?>">
+
+                <div class="ui celled grid">
+                    <div class=" row">
+                        <div class="five wide column">
+                            <div class="ui card ">
+                                <div class="image">
+                                    <img src="<?=base_url($image )?>">
+                                </div>
+                                <div class="content" align="center">
+                                    <a class="header"><?php echo $first;?></a>
+                                    <a class="header"><?php echo $middle;?></a>
+                                    <a class="header"><?php echo $last;?></a>
+                                    <div class="meta">
+                                        <span class="date"><?php  echo 'User ID : '.$id;?></span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="content">
-                            <a class="header"><?php echo $first;?></a>
-                            <a class="header"><?php echo $middle;?></a>
-                            <a class="header"><?php echo $last;?></a>
-                            <div class="meta">
-                                <span class="date"><?php  echo 'User ID : '.$id;?></span>
-                            </div>
-                            <div class="description">
-                                <?php echo 'Birthday :'.$day;?>
-                            </div>
+                        <div class="ten wide column">
+                            <table class="ui celled table">
 
-                            <div class="description">
-                                <?php  echo 'National Identity Card : '.$nic;?>
-                            </div>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="ui ribbon label">Name</div>
+                                    </td>
+                                    <td><?php echo $first." ".$middle." ".$last;?></td>
 
-                            <div class="description">
-                                <?php  echo 'Address: '.$post.' '.$street.' '.$city;?>
-                            </div>
+                                </tr>
+                                <tr>
+                                    <td><div class="ui ribbon label">ID</div></td>
+                                    <td><?php echo $id;?></td>
 
-                            <div class="description">
-                                <?php  echo 'Gender : '.$gender;?>
-                            </div>
+                                </tr>
+                                <tr>
+                                    <td><div class="ui ribbon label">Bithday</div></td>
+                                    <td><?php echo $day;?></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="ui ribbon label">National Identity Card</div></td>
+                                    <td><?php echo $nic;?></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="ui ribbon label">Address</div></td>
+                                    <td><?php echo $post.' '.$street.' '.$city;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'Telephone : '.$tp;?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">Gender</div></td>
+                                    <td><?php echo $gender;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'E-mail : '.$email;?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">Telephone</div></td>
+                                    <td><?php echo $tp;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'Nationality : '.$nationality;?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">E-mail</td>
+                                    <td><?php echo $email;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'Religion : '.$religion;?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">Nationality</div></td>
+                                    <td><?php echo $nationality;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'E-mail : '.$email;?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">Blood</div></td>
+                                    <td><?php echo $blood;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'Blood Group : '.$blood;?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">Religion</div></td>
+                                    <td><?php echo $religion;?></td>
+                                </tr>
 
-                            <div class="description">
-                                <?php  echo 'Salary : Rs.'.$salary.'.00/=';?>
-                            </div>
+                                <tr>
+                                    <td><div class="ui ribbon label">Salary</div></td>
+                                    <td><?php echo "Rs ".$salary.'.00/=';?></td>
+                                </tr>
+                                </tbody>
 
+                            </table>
 
-
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="user icon"></i>
-                               <?php echo $designation;?>
-                            </a>
                         </div>
                     </div>
 
-                </div>
+
+
+
+
             </div>
 
 
-        </div>
+
     </div>
 
 </div>

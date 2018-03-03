@@ -10,6 +10,7 @@
                     <tr>
                         <th>User ID</th>
                         <th>Basic Salary</th>
+                        <th>Additional Salary</th>
                         <th>ETF</th>
                         <th>EPF</th>
                         <th>Advances</th>
@@ -21,12 +22,13 @@
                     <?php foreach($clients as $c){ ?>
                         <tr>
                             <td><?php echo $c['User_ID']; ?></td>
+                            <td><?php echo 'Rs. '.$basic.'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Normal_Salary'].'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Amount_ETF'].'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Amount_EPF'].'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Amount_advances'].'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Other_cutoffs'].'.00/='; ?></td>
-                            <td><?php echo 'Rs. '.($c['Normal_Salary']+$c['Amount_advances']-$c['Amount_ETF']-$c['Amount_EPF']).'.00/='; ?></td>
+                            <td><?php echo 'Rs. '.($basic+$c['Normal_Salary']+$c['Amount_advances']-$c['Amount_ETF']-$c['Amount_EPF']).'.00/='; ?></td>
 
 
                         </tr>
@@ -45,9 +47,6 @@
                 <a href="<?php echo site_url('Hrm_salary/pay'); ?>" class="ui inverted green button"><i class="address book icon"></i> Pay</a>
             </div>
 
-            <div class="ui segment">
-                <a href="<?php echo site_url('Hrm_salary/pay_sheet'); ?>" class="ui inverted pink button"><i class="Newspaper icon"></i> Pay Sheet </a>
-            </div>
 
             <div class="ui segment">
                 <a href="<?php echo site_url('Hrm_employee/add'); ?>" class="ui inverted brown button"><i class="address book icon"></i> Payment History </a>

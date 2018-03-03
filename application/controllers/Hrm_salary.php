@@ -37,7 +37,7 @@ class Hrm_salary extends CI_Controller
         $data['clients'] = $this->Hrm_salary_model->get_paged_salary($year,$month,($page-1)*$per_page, $per_page);
         $data['pages'] = $pages;
         $data['page'] = $page;
-
+        $data['basic']=$this->Hrm_salary_model->get_basic();
         $data['_view'] = 'hrm_salary/index';
         $this->load->view('hrm_layouts/main',$data);
     }

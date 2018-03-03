@@ -35,7 +35,7 @@
                 </div>
                 <div class="statistic">
                     <div class="value">
-                        <img src="<?=base_url('assets/img/training.png' )?>" class="ui circular inline image">3
+                        <img src="<?=base_url('assets/img/training.png' )?>" class="ui circular inline image">1
 
                     </div>
                     <div class="label">
@@ -63,7 +63,7 @@
                         <div class=" content">
                             <div class="header">Employees</div>
                             <div class="meta">
-                                <span class="price">New</span>
+                                <span class="price">New Employees Registered This Month</span>
                             </div>
                             <div class="description">
                                 <p>
@@ -98,7 +98,7 @@
                                 <p>
                                 <div class="ui statistic">
                                     <div class="value">
-                                        200,200
+                                        <?php echo $total;?>.00
                                     </div>
                                     <div class="label">
                                         Rs
@@ -126,12 +126,12 @@
 
                             <div class="ui  red label">
                                 Male
-                                <div class="detail">75%</div>
+                                <div class="detail"><?php echo intval($male)?>%</div>
                             </div>
 
                             <div class="ui  red label">
                                 Female
-                                <div class="detail">25%</div>
+                                <div class="detail"><?php if($male==0){ echo '0';} else{ echo 100-intval($male);}?>%</div>
                             </div>
                         </div>
                     </div>
@@ -172,10 +172,13 @@
                         <div class="content">
                             <div class="header">Last Training Program Details</div>
                             <div class="meta">
-                                <span class="category">Training Program 1</span>
+                                <span class="category"><?php echo $params1['Title'];?></span>
                             </div>
                             <div class="description">
-                                <p>This training programme is for improve soft skills of the employees.
+
+                                <p> Date: <?php echo $params1['Program_Date'];?> </p>
+                                <p> Venue : <?php echo $params1['Venue']?></p>
+                                <p> Description :<?php echo $params1['Description'];?>
                                 </p>
                                 <div class="ui green label">
                                     Employee Partcipation
@@ -191,5 +194,7 @@
                     </div>
             </div>
             </div>
+
+
     </div>
 </div>

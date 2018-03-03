@@ -10,8 +10,8 @@ class Hrm_employee extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-
-       $this->load->model('Hrm_employee_model');
+        //load helpers and libraries.
+        $this->load->model('Hrm_employee_model');
         $this->load->library("Aauth");
         $this->load->helper('email');
        if(!$this->aauth->is_loggedin()) redirect('/login');
@@ -21,13 +21,10 @@ class Hrm_employee extends CI_Controller{
     {
         $per_page = 25;
         $count = $this->Hrm_employee_model->get_employee_count();
-
         $pages = ceil($count/$per_page);
-
         $data['clients'] = $this->Hrm_employee_model->get_paged_employee(($page-1)*$per_page, $per_page);
         $data['pages'] = $pages;
         $data['page'] = $page;
-
         $data['_view'] = 'hrm_employee/index';
         $this->load->view('hrm_layouts/main',$data);
     }
@@ -39,9 +36,13 @@ class Hrm_employee extends CI_Controller{
         $this->load->view('hrm_layouts/main',$data);
     }
 
+    function add_employee($Program_ID){
+        $data['_view']='hrm_training/add_employee';
+        $this->load->view('hrm_layouts/main',$data);
+    }
+
     function add_new_employee(){
-
-
+        //set form validation rules
         $this->load->library('form_validation');
         $this->form_validation->set_rules("email","Email","trim|required|valid_email");
         $this->form_validation->set_rules("first_name","First Name","required");
@@ -64,7 +65,7 @@ class Hrm_employee extends CI_Controller{
 
 
             try {
-
+                //upload cv
                 if (!empty($_FILES['cv']['name'])) {
 
                         $config['upload_path'] = './files/';
@@ -79,7 +80,7 @@ class Hrm_employee extends CI_Controller{
                             $cv = $uploadData['file_name'];
                         }
                 }
-
+                //upload image
                 if (!empty($_FILES['image']['name'])) {
 
                     $config['upload_path'] = './files/';
@@ -109,7 +110,7 @@ class Hrm_employee extends CI_Controller{
 
                 if ($err != "") {
 
-
+                    //prompt back the form with error messages
                     $data['_view'] = 'hrm_employee/add';
                     $data['designation'] = $this->Hrm_employee_model->get_designation();
                     $data['basic'] = $this->Hrm_employee_model->get_basic();
@@ -117,12 +118,9 @@ class Hrm_employee extends CI_Controller{
                     $this->load->view('hrm_layouts/main', $data);
 
                 } else {
-
-
                     $first_name = $this->input->post('first_name');
                     $email = $this->input->post('email');
-
-
+                    // build a new id to the new employee which is also used as the registration number
                     $cnt = $this->Hrm_employee_model->count_employee();
                     $pre = substr($first_name, 0, 1);
                     $len = strlen($cnt);
@@ -166,12 +164,10 @@ class Hrm_employee extends CI_Controller{
                         'Salary' => ($this->input->post('basic') + $this->input->post('additional'))
 
                     );
-
+                    //add new employee and create new user
                     $this->Hrm_employee_model->add_employee($params1, $params2);
                     $this->aauth->create_user($email, '123456', $id);
 
-                    // 'basic' => $this->input->post('basic'),
-                    //  'additional' => $this->input->post('additional'),
                 }
 
             } catch (Exception $e){
@@ -180,12 +176,9 @@ class Hrm_employee extends CI_Controller{
                 $data['basic'] = $this->Hrm_employee_model->get_basic();
                 $data['err'] = $e;
                 $this->load->view('hrm_layouts/main', $data);
-
             }
 
         } else{
-    // echo validation_errors('<div class="error">', '</div>');
-
 
             // same as the add function
             $err=validation_errors();
@@ -202,9 +195,6 @@ class Hrm_employee extends CI_Controller{
         $cv=$this->Hrm_employee_model->get_cv($User_ID);
         $file = './files/'.$cv;
          $filename = $cv;
-
-
-
          header('Content-type: application/pdf');
          header('Content-Disposition: inline; filename="' . $filename . '"');
          header('Content-Transfer-Encoding: binary');
@@ -220,9 +210,10 @@ class Hrm_employee extends CI_Controller{
 
      }
 
-     function edit($User_ID){
+     function edit($User_ID,$err=null){
          $user=$this->Hrm_employee_model->get_single_user($User_ID);
         $data['user']=$user;
+         $data['err']=$err;
          $data['_view']='hrm_employee/edit';
          $data['designation']=$this->Hrm_employee_model->get_designation();
          $this->load->view('hrm_layouts/main',$data);
@@ -240,15 +231,11 @@ class Hrm_employee extends CI_Controller{
          // $this->form_validation->set_rules("nic","Identity Card","required|greater_than_equal_to[10]|less_than_equal_to[12]");
           $this->form_validation->set_rules("postbox","Post Box","required");
          $this->form_validation->set_rules("city","City","required");
-         $this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[10]");
-         $this->form_validation->set_rules("additional","Additional Fee","required");
-         $this->form_validation->set_rules("cv","CV","required");
-
+         $this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[9]");
 
          if($this->form_validation->run()){
              // if there are no errors add to the database
              $first_name = $this->input->post('first_name');
-
 
              $params1 = array(
                  'FirstName' => $this->input->post('first_name'),
@@ -279,18 +266,19 @@ class Hrm_employee extends CI_Controller{
              );
 
              $this->Hrm_employee_model->edit_employee($params1,$params2,$User_ID);
+             $this->index();
 
          } else{
              // echo validation_errors('<div class="error">', '</div>');
-
-
              // same as the add function
+
              $err=validation_errors();
-             $data['_view'] = 'hrm_employee/add';
-             $data['designation']=$this->Hrm_employee_model->get_designation();
-             $data['basic']=$this->Hrm_employee_model->get_basic();
+             //$data['_view'] = 'hrm_employee/add';
+            // $data['designation']=$this->Hrm_employee_model->get_designation();
+            // $data['basic']=$this->Hrm_employee_model->get_basic();
              $data['err']=$err;
-             $this->load->view('hrm_layouts/main',$data);
+             //$this->load->view('hrm_layouts/main',$data);
+             $this->edit($User_ID,$err);
              // $this->add($err);
          }
 
