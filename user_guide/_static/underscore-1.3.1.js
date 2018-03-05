@@ -885,7 +885,7 @@
   };
 
   // By default, Underscore uses ERB-style template delimiters, change the
-  // following template settings to use alternative delimiters.
+  // following template hrm_settings to use alternative delimiters.
   _.templateSettings = {
     evaluate    : /<%([\s\S]+?)%>/g,
     interpolate : /<%=([\s\S]+?)%>/g,

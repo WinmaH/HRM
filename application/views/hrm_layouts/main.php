@@ -19,6 +19,9 @@ if(isset($err)){
 if(isset($user)){
     $data['user']=$user;
 }
+if(isset($admin)){
+    $data['admin']=$admin;
+}
 
 if(isset($Program_ID)){
     $data['Program_ID']=$Program_ID;

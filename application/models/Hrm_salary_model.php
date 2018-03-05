@@ -86,4 +86,10 @@ function get_salary_not_paid_count($year,$month){
         return $query->result_array();
     }
 
+    function get_last_salary($User_ID){
+        $query=$this->db->query("SELECT * FROM salary where User_ID='$User_ID' ORDER BY User_ID DESC LIMIT 1");
+        $row=$query->row_array();
+        return $row;
+    }
+
 }

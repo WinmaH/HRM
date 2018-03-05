@@ -19,15 +19,15 @@
     <?php }
 
     else{?>
-        <a class="item" href="<?php echo base_url(''); ?>"><i class="block layout icon"></i>Dashboard</a>
-        <a class="item" href="<?php echo base_url('project'); ?>"><i class="Dollar icon"></i>Salary</a>
+        <a class="item" href="<?php echo base_url('Login/view_employee_dashboard'); ?>"><i class="block layout icon"></i>Dashboard</a>
+        <a class="item" href="<?php echo base_url('Hrm_salary/own_salary'); ?>"><i class="Dollar icon"></i>Salary</a>
         <a class="item" href="<?php echo base_url('inventory'); ?>"><i class="Checkmark Box icon"></i>Attendance</a>
         <a class="item" href="<?php echo base_url('Hrm_leaves/apply'); ?>"><i class="Remove User icon"></i>Leave</a>
         <a class="item" href="<?php echo base_url('Hrm_Notification/show_employee_not'); ?>"><i class="Announcement icon"></i>Notifications</a>
 
     <?php }?>
 
-    <a class="item" href="<?php echo base_url('settings'); ?>"><i class="settings icon"></i>Settings</a>
-    <a class="item" href="<?php echo base_url('Login/login1'); ?>">Logout</a>
+    <a class="item" href="<?php  echo base_url('Hrm_settings/view'); ?>"><i class="settings icon"></i>Settings</a>
+    <a class="item" href="<?php  echo base_url('Login/login1'); ?>">Logout</a>
 
 </div>

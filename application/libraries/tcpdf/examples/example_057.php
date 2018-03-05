@@ -220,7 +220,7 @@ $pdf->AddPage();
 
 $pdf->SetFont('helvetica', 'B', 20);
 
-$pdf->Write(0, 'Example of advanced border settings for Cell()', '', 0, 'L', true, 0, false, false, 0);
+$pdf->Write(0, 'Example of advanced border hrm_settings for Cell()', '', 0, 'L', true, 0, false, false, 0);
 
 $pdf->SetFont('helvetica', '', 11);
 

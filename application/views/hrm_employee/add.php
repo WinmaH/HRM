@@ -60,7 +60,7 @@
                     <div class="two fields">
 
                         <div class="field">
-                        <label for="gender">Gender:</label>
+                        <label>Gender:</label>
 
                         <select name="gender" class="ui dropdown">
                             <option>Male</option>
@@ -106,7 +106,7 @@
 
                     <div class="two fields">
                     <div class="field">
-                        <label for="name">Mobile no:</label>
+                        <label>Mobile no:</label>
                         <input type="number" name="mobile" value="<?php echo $this->input->post('mobile'); ?>"  id="mobile" />
                     </div>
 
@@ -204,19 +204,24 @@
                         <label for="cv">CV:</label>
                         <div class="ui input">
 
-
                         <input type="file" name="cv" value="<?php echo $this->input->post('cv'); ?>"  id="cv" />
 
-
+                        </div>
+                        <div class="ui pointing label">
+                            Please enter a PDF document of the cv
                         </div>
 
                     </div>
 
                     <div class="field">
-                        <label for="image">Image:(Please upload an image!)</label>
+                        <label for="image">Image:</label>
                         <div class="ui  input">
                         <input type="file" name="image" value="<?php echo $this->input->post('image'); ?>"  id="image" />
                         </div>
+                        <div class="ui pointing label">
+                            Please enter an image
+                        </div>
+
 
                     </div>
 

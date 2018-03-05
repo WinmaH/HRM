@@ -239,7 +239,7 @@ class PHPExcel_Writer_CSV extends PHPExcel_Writer_Abstract implements PHPExcel_W
 	 * Set whether the file should be saved with full Excel Compatibility
 	 *
 	 * @param	boolean	$pValue		Set the file to be written as a fully Excel compatible csv file
-	 *								Note that this overrides other settings such as useBOM, enclosure and delimiter
+	 *								Note that this overrides other hrm_settings such as useBOM, enclosure and delimiter
 	 * @return PHPExcel_Writer_CSV
 	 */
 	public function setExcelCompatibility($pValue = false) {

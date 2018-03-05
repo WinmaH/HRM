@@ -183,4 +183,13 @@ class Hrm_salary extends CI_Controller
 
     }
 
+    function own_salary(){
+        $User_ID=$this->session->userdata('username');
+        $data['user']=$this->Hrm_salary_model->get_last_salary($User_ID);
+        $data['basic']=$this->Hrm_salary_model->get_basic();
+        $data['_view']='hrm_salary/employee_salary';
+        $this->load->view('hrm_layouts/main',$data);
+
+    }
+
 }

@@ -373,7 +373,7 @@ $config['encryption_key'] = 'myproject.winma';
 |	when auto-regenerating the session ID. When set to FALSE, the data
 |	will be later deleted by the garbage collector.
 |
-| Other session cookie settings are shared with the rest of the application,
+| Other session cookie hrm_settings are shared with the rest of the application,
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
@@ -396,7 +396,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 | 'cookie_secure'   = Cookie will only be set if a secure HTTPS connection exists.
 | 'cookie_httponly' = Cookie will only be accessible via HTTP(S) (no javascript)
 |
-| Note: These settings (with the exception of 'cookie_prefix' and
+| Note: These hrm_settings (with the exception of 'cookie_prefix' and
 |       'cookie_httponly') will also affect sessions.
 |
 */

@@ -133,6 +133,13 @@ class Hrm_leave_model extendS CI_Model
         $this->db->update('employeeleavenotifications',$params1);
     }
 
+    public function get_last_record(){
+        $user=$this->session->userdata('username');
+        $query=$this->db->query("SELECT * FROM leaves where User_ID='$user' ORDER BY Leave_ID DESC LIMIT 1");
+        $row=$query->row_array();
+        return $row;
+    }
+
 
 
 

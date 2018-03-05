@@ -184,7 +184,7 @@ class CI_DB_oci8_driver extends CI_DB {
 			 * ':' and/or '/' and if port and/or database aren't
 			 * empty, then the hostname field is most likely indeed
 			 * just a hostname. Therefore we'll try and build an
-			 * Easy Connect string from these 3 settings, assuming
+			 * Easy Connect string from these 3 hrm_settings, assuming
 			 * that the database field is a service name.
 			 */
 			$this->dsn = $this->hostname

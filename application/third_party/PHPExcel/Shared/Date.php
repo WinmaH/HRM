@@ -42,7 +42,7 @@ class PHPExcel_Shared_Date
 
 	/*
 	 * Names of the months of the year, indexed by shortname
-	 * Planned usage for locale settings
+	 * Planned usage for locale hrm_settings
 	 *
 	 * @public
 	 * @var	string[]
@@ -63,7 +63,7 @@ class PHPExcel_Shared_Date
 
 	/*
 	 * Names of the months of the year, indexed by shortname
-	 * Planned usage for locale settings
+	 * Planned usage for locale hrm_settings
 	 *
 	 * @public
 	 * @var	string[]

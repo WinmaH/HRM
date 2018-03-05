@@ -226,7 +226,7 @@ if (!defined('QRCODEDEFS')) {
 
 	// -----------------------------------------------------
 
-	// Optimization settings
+	// Optimization hrm_settings
 
 	/**
 	 * if true, estimates best mask (spec. default, but extremally slow; set to false to significant performance boost but (propably) worst quality code

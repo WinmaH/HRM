@@ -714,7 +714,7 @@ class Aauth {
 				$this->aauth_db->where('id', $user_id);
 				$this->aauth_db->update($this->config_vars['users'], $data);
 
-				// sends verifition ( !! e-mail settings must be set)
+				// sends verifition ( !! e-mail hrm_settings must be set)
 				$this->send_verification($user_id);
 			}
 

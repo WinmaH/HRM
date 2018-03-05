@@ -815,7 +815,7 @@ if ( ! function_exists('function_usable'))
 	 * This is useful as function_exists() will return FALSE for
 	 * functions disabled via the *disable_functions* php.ini
 	 * setting, but not for *suhosin.executor.func.blacklist* and
-	 * *suhosin.executor.disable_eval*. These settings will just
+	 * *suhosin.executor.disable_eval*. These hrm_settings will just
 	 * terminate script execution if a disabled function is executed.
 	 *
 	 * The above described behavior turned out to be a bug in Suhosin,

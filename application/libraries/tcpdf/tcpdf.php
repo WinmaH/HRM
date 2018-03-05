@@ -801,7 +801,7 @@ class TCPDF {
 	protected $encrypted;
 
 	/**
-	 * Array containing encryption settings.
+	 * Array containing encryption hrm_settings.
 	 * @protected
 	 * @since 5.0.005 (2010-05-11)
 	 */
@@ -1505,7 +1505,7 @@ class TCPDF {
 	protected $font_subsetting = true;
 
 	/**
-	 * Array of default graphic settings.
+	 * Array of default graphic hrm_settings.
 	 * @protected
 	 * @since 5.5.008 (2010-07-02)
 	 */
@@ -1956,7 +1956,7 @@ class TCPDF {
 		$this->ur['formex'] = '';
 		// set default JPEG quality
 		$this->jpeg_quality = 75;
-		// initialize some settings
+		// initialize some hrm_settings
 		TCPDF_FONTS::utf8Bidi(array(''), '', false, $this->isunicode, $this->CurrentFont);
 		// set default font
 		$this->SetFont($this->FontFamily, $this->FontStyle, $this->FontSizePt);
@@ -2957,7 +2957,7 @@ class TCPDF {
 		}
 		$this->endLayer();
 		if ($this->tcpdflink) {
-			// save current graphic settings
+			// save current graphic hrm_settings
 			$gvars = $this->getGraphicVars();
 			$this->setEqualColumns();
 			$this->lastpage(true);
@@ -2973,7 +2973,7 @@ class TCPDF {
 			$lnk = "\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x70\x64\x66\x2e\x6f\x72\x67";
 			$this->Cell(0, 0, $msg, 0, 0, 'L', 0, $lnk, 0, false, 'D', 'B');
 			$this->_outRestoreGraphicsState();
-			// restore graphic settings
+			// restore graphic hrm_settings
 			$this->setGraphicVars($gvars);
 		}
 		// close page
@@ -2998,7 +2998,7 @@ class TCPDF {
 		}
 		if (($pnum > 0) AND ($pnum <= $this->numpages)) {
 			$this->state = 2;
-			// save current graphic settings
+			// save current graphic hrm_settings
 			//$gvars = $this->getGraphicVars();
 			$oldpage = $this->page;
 			$this->page = $pnum;
@@ -3013,7 +3013,7 @@ class TCPDF {
 			$this->AutoPageBreak = $this->pagedim[$this->page]['pb'];
 			$this->CurOrientation = $this->pagedim[$this->page]['or'];
 			$this->SetAutoPageBreak($this->AutoPageBreak, $this->bMargin);
-			// restore graphic settings
+			// restore graphic hrm_settings
 			//$this->setGraphicVars($gvars);
 			if ($resetmargins) {
 				$this->lMargin = $this->pagedim[$this->page]['olm'];
@@ -3190,19 +3190,19 @@ class TCPDF {
 		}
 		++$this->numpages;
 		$this->swapMargins($this->booklet);
-		// save current graphic settings
+		// save current graphic hrm_settings
 		$gvars = $this->getGraphicVars();
 		// start new page
 		$this->_beginpage($orientation, $format);
 		// mark page as open
 		$this->pageopen[$this->page] = true;
-		// restore graphic settings
+		// restore graphic hrm_settings
 		$this->setGraphicVars($gvars);
 		// mark this point
 		$this->setPageMark();
 		// print page header
 		$this->setHeader();
-		// restore graphic settings
+		// restore graphic hrm_settings
 		$this->setGraphicVars($gvars);
 		// mark this point
 		$this->setPageMark();
@@ -3559,7 +3559,7 @@ class TCPDF {
 			return;
 		}
 		$this->InFooter = true;
-		// save current graphic settings
+		// save current graphic hrm_settings
 		$gvars = $this->getGraphicVars();
 		// mark this point
 		$this->footerpos[$this->page] = $this->pagelen[$this->page];
@@ -3595,7 +3595,7 @@ class TCPDF {
 			$this->thead = $temp_thead;
 			$this->theadMargins = $temp_theadMargins;
 		}
-		// restore graphic settings
+		// restore graphic hrm_settings
 		$this->setGraphicVars($gvars);
 		$this->current_column = $gvars['current_column'];
 		$this->num_columns = $gvars['num_columns'];
@@ -8604,7 +8604,7 @@ class TCPDF {
 							}
 							if (isset($pl['opt']['ff'])) {
 								if (is_array($pl['opt']['ff'])) {
-									// array of bit settings
+									// array of bit hrm_settings
 									$flag = 0;
 									foreach($pl['opt']['ff'] as $val) {
 										$flag += 1 << ($val - 1);
@@ -10376,7 +10376,7 @@ class TCPDF {
 				$this->SetLink($url, $lnky, $page);
 			}
 		}
-		// store current settings
+		// store current hrm_settings
 		$prevcolor = $this->fgcolor;
 		$prevstyle = $this->FontStyle;
 		if (empty($color)) {
@@ -10390,7 +10390,7 @@ class TCPDF {
 			$this->SetFont('', $this->FontStyle.$style);
 		}
 		$ret = $this->Write($this->lasth, $name, $url, $fill, '', false, 0, $firstline, $firstblock, 0);
-		// restore settings
+		// restore hrm_settings
 		$this->SetFont('', $prevstyle);
 		$this->SetTextColorArray($prevcolor);
 		return $ret;
@@ -15189,7 +15189,7 @@ class TCPDF {
 			return;
 		}
 		require_once(dirname(__FILE__).'/tcpdf_barcodes_1d.php');
-		// save current graphic settings
+		// save current graphic hrm_settings
 		$gvars = $this->getGraphicVars();
 		// create new barcode object
 		$barcodeobj = new TCPDFBarcode($code, $type);
@@ -15448,7 +15448,7 @@ class TCPDF {
 		}
 		// restore original direction
 		$this->rtl = $tempRTL;
-		// restore previous settings
+		// restore previous hrm_settings
 		$this->setGraphicVars($gvars);
 		// set pointer to align the next text/objects
 		switch($align) {
@@ -15508,7 +15508,7 @@ class TCPDF {
 			return;
 		}
 		require_once(dirname(__FILE__).'/tcpdf_barcodes_2d.php');
-		// save current graphic settings
+		// save current graphic hrm_settings
 		$gvars = $this->getGraphicVars();
 		// create new barcode object
 		$barcodeobj = new TCPDF2DBarcode($code, $type);
@@ -15683,7 +15683,7 @@ class TCPDF {
 		}
 		// restore original direction
 		$this->rtl = $tempRTL;
-		// restore previous settings
+		// restore previous hrm_settings
 		$this->setGraphicVars($gvars);
 		// set pointer to align the next text/objects
 		switch($align) {
@@ -20374,7 +20374,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				$prev_line_style = $this->linestyleWidth.' '.$this->linestyleCap.' '.$this->linestyleJoin.' '.$this->linestyleDash.' '.$this->DrawColor;
 				$new_line_style = array('width' => ($r / 3), 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'phase' => 0, 'color'=>$color);
 				$this->Circle(($this->x + $r), ($this->y + ($this->lasth / 2)), ($r * (1 - (1/6))), 0, 360, 'D', $new_line_style, array(), 8);
-				$this->_out($prev_line_style); // restore line settings
+				$this->_out($prev_line_style); // restore line hrm_settings
 				break;
 			}
 			case 'square': {
@@ -23737,7 +23737,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				$svgstyle[$key] = $val;
 			}
 			if (isset($attribs[$key]) AND !TCPDF_STATIC::empty_string($attribs[$key])) {
-				// specific attribute settings
+				// specific attribute hrm_settings
 				if ($attribs[$key] == 'inherit') {
 					$svgstyle[$key] = $val;
 				} else {

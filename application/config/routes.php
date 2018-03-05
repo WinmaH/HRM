@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['hrm_employee']='index.php/Hrm_employee/load';
+$route['HRM_SALARY']='index.php/Hrm_salary/index';
 
 
 

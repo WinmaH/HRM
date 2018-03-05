@@ -101,7 +101,7 @@ class CI_Cart {
 		// Set the super object to a local variable for use later
 		$this->CI =& get_instance();
 
-		// Are any config settings being passed manually?  If so, set them
+		// Are any config hrm_settings being passed manually?  If so, set them
 		$config = is_array($params) ? $params : array();
 
 		// Load the Sessions class

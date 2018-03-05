@@ -2965,7 +2965,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 			// read additional Asian phonetics information, if any
 			if ($hasAsian) {
-				// For Asian phonetic settings, we skip the extended string data
+				// For Asian phonetic hrm_settings, we skip the extended string data
 				$pos += $extendedRunLength;
 			}
 
@@ -6587,7 +6587,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 	/**
 	 * Extracts an Excel Unicode long string (16-bit string length)
 	 * OpenOffice documentation: 2.5.3
-	 * this function is under construction, needs to support rich text, and Asian phonetic settings
+	 * this function is under construction, needs to support rich text, and Asian phonetic hrm_settings
 	 *
 	 * @param string $subData
 	 * @return array
@@ -6610,7 +6610,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 	/**
 	 * Read Unicode string with no string length field, but with known character count
-	 * this function is under construction, needs to support rich text, and Asian phonetic settings
+	 * this function is under construction, needs to support rich text, and Asian phonetic hrm_settings
 	 * OpenOffice.org's Documentation of the Microsoft Excel File Format, section 2.5.3
 	 *
 	 * @param string $subData
@@ -6626,14 +6626,14 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			// bit: 0; mask: 0x01; character compression (0 = compressed 8-bit, 1 = uncompressed 16-bit)
 			$isCompressed = !((0x01 & ord($subData[0])) >> 0);
 
-			// bit: 2; mask: 0x04; Asian phonetic settings
+			// bit: 2; mask: 0x04; Asian phonetic hrm_settings
 			$hasAsian = (0x04) & ord($subData[0]) >> 2;
 
-			// bit: 3; mask: 0x08; Rich-Text settings
+			// bit: 3; mask: 0x08; Rich-Text hrm_settings
 			$hasRichText = (0x08) & ord($subData[0]) >> 3;
 
 		// offset: 1: size: var; character array
-		// this offset assumes richtext and Asian phonetic settings are off which is generally wrong
+		// this offset assumes richtext and Asian phonetic hrm_settings are off which is generally wrong
 		// needs to be fixed
 		$value = self::_encodeUTF16(substr($subData, 1, $isCompressed ? $characterCount : 2 * $characterCount), $isCompressed);
 

@@ -367,7 +367,7 @@ abstract class CI_DB_utility {
 		}
 
 		// Is the encoder supported? If not, we'll either issue an
-		// error or use plain text depending on the debug settings
+		// error or use plain text depending on the debug hrm_settings
 		if (($prefs['format'] === 'gzip' && ! function_exists('gzencode'))
 			OR ($prefs['format'] === 'zip' && ! function_exists('gzcompress')))
 		{

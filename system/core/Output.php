@@ -360,7 +360,7 @@ class CI_Output {
 	/**
 	 * Set Profiler Sections
 	 *
-	 * Allows override of default/config settings for
+	 * Allows override of default/config hrm_settings for
 	 * Profiler section display.
 	 *
 	 * @param	array	$sections	Profiler sections
@@ -637,7 +637,7 @@ class CI_Output {
 		chmod($cache_path, 0640);
 		log_message('debug', 'Cache file written: '.$cache_path);
 
-		// Send HTTP cache-control headers to browser to match file cache settings.
+		// Send HTTP cache-control headers to browser to match file cache hrm_settings.
 		$this->set_cache_header($_SERVER['REQUEST_TIME'], $expire);
 	}
 
@@ -777,7 +777,7 @@ class CI_Output {
 	/**
 	 * Set Cache Header
 	 *
-	 * Set the HTTP headers to match the server-side file cache settings
+	 * Set the HTTP headers to match the server-side file cache hrm_settings
 	 * in order to reduce bandwidth.
 	 *
 	 * @param	int	$last_modified	Timestamp of when the page was last modified

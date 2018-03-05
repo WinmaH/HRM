@@ -1899,7 +1899,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 			}
 		}
 
-		// top-level style settings
+		// top-level style hrm_settings
 		if (isset($style->quotePrefix)) {
 			$docStyle->setQuotePrefix($style->quotePrefix);
         }

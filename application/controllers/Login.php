@@ -18,6 +18,7 @@ class Login extends CI_Controller
         $this->load->model('Hrm_dashboard_model');
         $this->load->model('Hrm_salary_model');
         $this->load->model('Hrm_training_model');
+        $this->load->model('Hrm_leave_model');
         $this->load->library("Aauth");
 
     }
@@ -58,6 +59,12 @@ class Login extends CI_Controller
         $data[ '_view']='hrm_dashboard/view';
         $this->load->view('hrm_layouts/main',$data);
     }
+    public function view_employee_dashboard(){
+        $data['params1']=$this->Hrm_training_model->get_last_record();
+        $data['basic']=$this->Hrm_leave_model->get_last_record();
+        $data['_view']='hrm_dashboard/view_employee';
+        $this->load->view('hrm_layouts/main',$data);
+    }
 
 
     public function login1(){
@@ -74,7 +81,13 @@ class Login extends CI_Controller
 
             //if the user name and password is valid load the dashboard
             if($result){
-               $this->view_dashboard();
+                if($this->aauth->is_admin()){
+                    $this->view_dashboard();
+                }
+                else{
+                    $this->view_employee_dashboard();
+                }
+               //$this->view_dashboard();
             }else{
                 $data = array('failed' => 1 );
                 $this->load->view('hrm_user/user_login',$data);

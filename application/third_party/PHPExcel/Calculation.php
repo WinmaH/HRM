@@ -232,7 +232,7 @@ class PHPExcel_Calculation {
 	private static $_localeLanguage = 'en_us';					//	US English	(default locale)
 
 	/**
-	 * List of available locale settings
+	 * List of available locale hrm_settings
 	 * Note that this is read for the locale subdirectory only when requested
 	 *
 	 * @var string[]
@@ -1968,7 +1968,7 @@ class PHPExcel_Calculation {
 
 		//	Test whether we have any language data for this language (any locale)
 		if (in_array($language,self::$_validLocaleLanguages)) {
-			//	initialise language/locale settings
+			//	initialise language/locale hrm_settings
 			self::$_localeFunctions = array();
 			self::$_localeArgumentSeparator = ',';
 			self::$_localeBoolean = array('TRUE' => 'TRUE', 'FALSE' => 'FALSE', 'NULL' => 'NULL');
@@ -2230,7 +2230,7 @@ class PHPExcel_Calculation {
 
 		$returnArrayAsType = self::$returnArrayAsType;
 		if ($resetLog) {
-			//	Initialise the logging settings if requested
+			//	Initialise the logging hrm_settings if requested
 			$this->formulaError = null;
 			$this->_debugLog->clearLog();
 			$this->_cyclicReferenceStack->clear();
@@ -2310,7 +2310,7 @@ class PHPExcel_Calculation {
 	 * @throws	PHPExcel_Calculation_Exception
 	 */
 	public function calculateFormula($formula, $cellID=NULL, PHPExcel_Cell $pCell = NULL) {
-		//	Initialise the logging settings
+		//	Initialise the logging hrm_settings
 		$this->formulaError = null;
 		$this->_debugLog->clearLog();
 		$this->_cyclicReferenceStack->clear();

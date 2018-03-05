@@ -26,6 +26,10 @@ class Hrm_employee_model extends CI_Model
         return $row;
     }
 
+    function check_employee($email,$tp){
+        $query=$this->db->query("SELECT * from person WHERE TP='$tp' AND E_mail='$email'");
+        return $query->num_rows();
+    }
 
     //query to get the employee count
     function get_employee_count()

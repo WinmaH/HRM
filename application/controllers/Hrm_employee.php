@@ -120,6 +120,7 @@ class Hrm_employee extends CI_Controller{
                 } else {
                     $first_name = $this->input->post('first_name');
                     $email = $this->input->post('email');
+                    $tp=$this->input->post('mobile');
                     // build a new id to the new employee which is also used as the registration number
                     $cnt = $this->Hrm_employee_model->count_employee();
                     $pre = substr($first_name, 0, 1);
@@ -165,8 +166,18 @@ class Hrm_employee extends CI_Controller{
 
                     );
                     //add new employee and create new user
-                    $this->Hrm_employee_model->add_employee($params1, $params2);
-                    $this->aauth->create_user($email, '123456', $id);
+                    $result=$this->Hrm_employee_model->check_employee($email,$tp);
+                    if($result==0){
+                        $this->Hrm_employee_model->add_employee($params1, $params2);
+                        $this->aauth->create_user($email, '123456', $id);
+                        $this->index();
+                    } else{
+                        $data['err']="A user is already registered with the same email or mobile number";
+                        $data['_view']='hrm_layouts/fail';
+                        $this->load->view('hrm_layouts/main', $data);
+
+                    }
+
 
                 }
 

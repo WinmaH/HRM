@@ -5,7 +5,7 @@
 // Last Update : 2013-05-14
 //
 // Description : Example 060 for TCPDF class
-//               Advanced page settings.
+//               Advanced page hrm_settings.
 //
 // Author: Nicola Asuni
 //
@@ -19,7 +19,7 @@
 /**
  * Creates an example PDF TEST document using TCPDF
  * @package com.tecnick.tcpdf
- * @abstract TCPDF - Example: Advanced page settings.
+ * @abstract TCPDF - Example: Advanced page hrm_settings.
  * @author Nicola Asuni
  * @since 2010-05-17
  */

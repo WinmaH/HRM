@@ -84,7 +84,7 @@ function &DB($params = '', $query_builder_override = NULL)
 
 		if ( ! isset($db) OR count($db) === 0)
 		{
-			show_error('No database connection settings were found in the database config file.');
+			show_error('No database connection hrm_settings were found in the database config file.');
 		}
 
 		if ($params !== '')
@@ -107,7 +107,7 @@ function &DB($params = '', $query_builder_override = NULL)
 	{
 		/**
 		 * Parse the URL from the DSN string
-		 * Database settings can be passed as discreet
+		 * Database hrm_settings can be passed as discreet
 		 * parameters or as a data source name in the first
 		 * parameter. DSNs must have this prototype:
 		 * $dsn = 'driver://username:password@hostname/database';

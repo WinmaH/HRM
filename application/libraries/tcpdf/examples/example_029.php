@@ -86,7 +86,7 @@ $preferences = array(
 	'NumCopies' => 2
 );
 
-// Check the example n. 60 for advanced page settings
+// Check the example n. 60 for advanced page hrm_settings
 
 // set pdf viewer preferences
 $pdf->setViewerPreferences($preferences);

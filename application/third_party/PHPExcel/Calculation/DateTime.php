@@ -167,7 +167,7 @@ class PHPExcel_Calculation_DateTime {
 	 * open the worksheet.
 	 *
 	 * NOTE: When used in a Cell Formula, MS Excel changes the cell format so that it matches the date
-	 * and time format of your regional settings. PHPExcel does not change cell formatting in this way.
+	 * and time format of your regional hrm_settings. PHPExcel does not change cell formatting in this way.
 	 *
 	 * Excel Function:
 	 *		NOW()
@@ -207,7 +207,7 @@ class PHPExcel_Calculation_DateTime {
 	 * open the worksheet.
 	 *
 	 * NOTE: When used in a Cell Formula, MS Excel changes the cell format so that it matches the date
-	 * and time format of your regional settings. PHPExcel does not change cell formatting in this way.
+	 * and time format of your regional hrm_settings. PHPExcel does not change cell formatting in this way.
 	 *
 	 * Excel Function:
 	 *		TODAY()
@@ -245,7 +245,7 @@ class PHPExcel_Calculation_DateTime {
 	 * The DATE function returns a value that represents a particular date.
 	 *
 	 * NOTE: When used in a Cell Formula, MS Excel changes the cell format so that it matches the date
-	 * format of your regional settings. PHPExcel does not change cell formatting in this way.
+	 * format of your regional hrm_settings. PHPExcel does not change cell formatting in this way.
 	 *
 	 * Excel Function:
 	 *		DATE(year,month,day)
@@ -362,7 +362,7 @@ class PHPExcel_Calculation_DateTime {
 	 * The TIME function returns a value that represents a particular time.
 	 *
 	 * NOTE: When used in a Cell Formula, MS Excel changes the cell format so that it matches the time
-	 * format of your regional settings. PHPExcel does not change cell formatting in this way.
+	 * format of your regional hrm_settings. PHPExcel does not change cell formatting in this way.
 	 *
 	 * Excel Function:
 	 *		TIME(hour,minute,second)
@@ -460,7 +460,7 @@ class PHPExcel_Calculation_DateTime {
 	 * value.
 	 *
 	 * NOTE: When used in a Cell Formula, MS Excel changes the cell format so that it matches the date
-	 * format of your regional settings. PHPExcel does not change cell formatting in this way.
+	 * format of your regional hrm_settings. PHPExcel does not change cell formatting in this way.
 	 *
 	 * Excel Function:
 	 *		DATEVALUE(dateValue)
@@ -566,7 +566,7 @@ class PHPExcel_Calculation_DateTime {
 	 * value.
 	 *
 	 * NOTE: When used in a Cell Formula, MS Excel changes the cell format so that it matches the time
-	 * format of your regional settings. PHPExcel does not change cell formatting in this way.
+	 * format of your regional hrm_settings. PHPExcel does not change cell formatting in this way.
 	 *
 	 * Excel Function:
 	 *		TIMEVALUE(timeValue)

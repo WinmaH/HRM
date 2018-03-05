@@ -2,7 +2,7 @@
 
     <div class="sixteen wide column">
 
-        <?php if(isset($success)){
+        <?php if(isset($err)){
 
 
 
@@ -12,7 +12,7 @@
             <div class="header">
             Error !
             </div>
-                <p>'; echo nl2br($success); echo '<p>
+                <p>'; echo nl2br($err); echo '<p>
   
             
         </div>';

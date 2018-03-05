@@ -37,7 +37,7 @@
  */
 
 // IMPORTANT:
-// If you define the constant K_TCPDF_EXTERNAL_CONFIG, all the following settings will be ignored.
+// If you define the constant K_TCPDF_EXTERNAL_CONFIG, all the following hrm_settings will be ignored.
 // If you use the tcpdf_autoconfig.php, then you can overwrite some values here.
 
 
