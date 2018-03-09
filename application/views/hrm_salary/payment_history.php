@@ -2,7 +2,7 @@
     <div class="sixteen wide column">
         <div class="ui segments">
             <div class="ui segment">
-                <h3 class="ui header">Salary Payments for this month</h3>
+                <h3 class="ui header">Total Salary Payments for <?php echo  $taken_full;?> </h3>
             </div>
             <div class="ui segment">
                 <table class="ui celled table">
@@ -19,7 +19,8 @@
                     </tr>
                     </thead>
 
-                    <?php foreach($clients as $c){ ?>
+                    <?php  $final=0;foreach($clients as $c){
+                        ?>
                         <tr>
                             <td><?php echo $c['User_ID']; ?></td>
                             <td><?php echo 'Rs. '.$basic.'.00/='; ?></td>
@@ -28,13 +29,24 @@
                             <td><?php echo 'Rs. '.$c['Amount_EPF'].'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Amount_advances'].'.00/='; ?></td>
                             <td><?php echo 'Rs. '.$c['Other_cutoffs'].'.00/='; ?></td>
-                            <td><?php echo 'Rs. '.($basic+$c['Normal_Salary']+$c['Amount_advances']-$c['Amount_ETF']-$c['Amount_EPF']).'.00/='; ?></td>
+                            <td><?php echo 'Rs. '.($basic+$c['Normal_Salary']+$c['Amount_advances']-$c['Amount_ETF']-$c['Amount_EPF']).'.00/='; $final+=($basic+$c['Normal_Salary']+$c['Amount_advances']-$c['Amount_ETF']-$c['Amount_EPF']); ?></td>
 
 
                         </tr>
                     <?php } ?>
 
                 </table>
+            </div>
+
+            <div class="ui segment">
+                <div class="ui green mini horizontal statistic">
+                    <div class="value">
+                        <?php echo 'Rs. '.$final.'.00/=';?>
+                    </div>
+                    <div class="teal label">
+                        Total Payment
+                    </div>
+                </div>
             </div>
             <div class="ui segment">
                 <?php for($i=1; $i<$pages+1; $i++) {  ?>
@@ -43,14 +55,7 @@
                     </a>
                 <?php } ?>
             </div>
-            <div class="ui segment">
-                <a href="<?php echo site_url('Hrm_salary/pay'); ?>" class="ui inverted purple button"><i class="address book icon"></i> Pay</a>
-            </div>
 
-
-            <div class="ui segment">
-                <a href="<?php echo site_url('Hrm_salary/load_payment_history'); ?>" class="ui inverted pink button"><i class="address book icon"></i> Payment History </a>
-            </div>
 
         </div>
     </div>

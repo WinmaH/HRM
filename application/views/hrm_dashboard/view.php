@@ -1,8 +1,7 @@
 <div class="ui grid">
     <div class="sixteen wide column">
         <div class="ui segments">
-
-        <div class="ui segment">
+            <div class="ui segment">
 
             <!-- display the major content information on the top-->
 
@@ -18,7 +17,7 @@
                 </div>
                 <div class="statistic">
                     <div class="value">
-                        <img src="<?=base_url('assets/img/application.jpg' )?>" class="ui circular inline image">3
+                        <img src="<?=base_url('assets/img/application.jpg' )?>" class="ui circular inline image"><?php echo $taken_half;?>
 
                     </div>
                     <div class="label">
@@ -35,7 +34,7 @@
                 </div>
                 <div class="statistic">
                     <div class="value">
-                        <img src="<?=base_url('assets/img/training.png' )?>" class="ui circular inline image">1
+                        <img src="<?=base_url('assets/img/training.png' )?>" class="ui circular inline image"><?php echo $taken_full;?>
 
                     </div>
                     <div class="label">

@@ -22,6 +22,12 @@ if(isset($user)){
 if(isset($admin)){
     $data['admin']=$admin;
 }
+if(isset($etf)){
+    $data['etf']=$etf;
+}
+if(isset($epf)){
+    $data['epf']=$epf;
+}
 
 if(isset($Program_ID)){
     $data['Program_ID']=$Program_ID;

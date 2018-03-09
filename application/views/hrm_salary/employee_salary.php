@@ -10,11 +10,11 @@
         <div class="ui celled grid" align="center">
             <div class=" row">
                 <div class="fourteen wide column">
-                    <table class="ui blue celled table">
+                    <table class="ui teal celled table">
                         <thead>
                         <tr>
-                            <th  class="ten wide"></th>
-                            <th class="three wide">Rs/=</th>
+                            <th  class="ten wide">Particulars</th>
+                            <th class="three wide">Amount in Rs.</th>
 
                         </tr>
 
@@ -24,33 +24,33 @@
 
 
                         <tr>
-                            <td><div class="ui blue ribbon label">Basic Salary</div></td>
+                            <td><div class="ui teal ribbon label">Basic Salary</div></td>
                             <td><?php echo $basic.".00";?></td>
 
                         </tr>
 
                         <tr>
                             <td>
-                                <div class="ui blue ribbon label">Additional Salary</div>
+                                <div class="ui teal ribbon label">Additional Salary</div>
                             </td>
                             <td><?php echo $user['Normal_Salary'].".00";?></td>
 
                         </tr>
                         <tr>
-                            <td><div class="ui blue ribbon label">Advances</div></td>
-                            <td><?php echo $user['Amount_advances'].".00";?></td>
+                            <td><div class="ui teal ribbon label">Advances</div></td>
+                            <td ><?php echo $user['Amount_advances'].".00";?></td>
 
                         </tr>
                         <tr>
-                            <td><div class="ui blue ribbon label">Cut-offs</div></td>
+                            <td><div class="ui teal ribbon label">Cut-offs</div></td>
                             <td><?php echo $user['Other_cutoffs'].".00";?></td>
                         </tr>
                         <tr>
-                            <td><div class="ui blue ribbon label">ETF Amount</div></td>
+                            <td><div class="ui teal ribbon label">ETF Amount</div></td>
                             <td><?php echo $user['Amount_ETF'].".00";?></td>
                         </tr>
                         <tr>
-                            <td><div class="ui blue ribbon label">EPF Amount</div></td>
+                            <td><div class="ui teal ribbon label">EPF Amount</div></td>
                             <td><?php echo $user['Amount_EPF'].".00";?></td>
                         </tr>
 

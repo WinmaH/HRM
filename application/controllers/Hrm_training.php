@@ -29,35 +29,41 @@ class Hrm_training extends CI_Controller
     }
 
     public function add_to_training($Program_ID){
-        $emp=$this->input->post('employee');
-        $User_ID=explode(" ",$emp)[2];
+        $emp=$this->input->post('emp');
+        $arr=explode(" ",$emp);
+        $User_ID=$arr[sizeof($arr)-1];
         $params=array(
-            'Program_ID'=>$Program_ID,
+          'Program_ID'=>$Program_ID,
             'User_ID'=>$User_ID
         );
 
         //check whether the same person is entered more than once
         $count=$this->Hrm_training_model->has_record($Program_ID,$User_ID);
         if($count==0){
-            $this->Hrm_training_model->participate_employee($params);
-            $this->get_employee($Program_ID);
+           $this->Hrm_training_model->participate_employee($params);
+           $this->get_employee($Program_ID);
         } else{
             $err="Employee is already participating !";
             $this->get_employee($Program_ID,$err);
         }
-
+    }
+    public function remove($User_ID,$Program_ID){
+        $this->Hrm_training_model->remove_employee($User_ID,$Program_ID);
+        $this->get_employee($Program_ID);
 
     }
     public function add($err=null){
         $data['err']=$err;
         $data['_view'] = 'hrm_training/add';
         $this->load->view('hrm_layouts/main',$data);
+
     }
 
 //view the list of employees already registered and add button to add new employee
     public function get_employee($Program_ID,$err=null,$page=1){
         $per_page = 25;
         $count = $this->Hrm_training_model->get_program_count();
+        $data['designation']=$this->Hrm_training_model->get_program_title($Program_ID);
         $data['user']=$this->Hrm_employee_model->get_employee();
         $pages = ceil($count/$per_page);
         $data['err']=$err;

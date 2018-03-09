@@ -68,7 +68,7 @@
                                         <p>
                                         <div class="ui statistic">
                                             <div class="value">
-                                                3%
+                                                <?php echo $etf;?>%
                                             </div>
                                             <div class="label">
                                                 Current Rate
@@ -96,7 +96,7 @@
                                     <div class="description">
                                         <p>
                                         <div class="ui statistic">
-                                            <div class="value">3%
+                                            <div class="value"><?php echo $epf;?>%
                                             </div>
                                             <div class="label">
                                                 Current Rate

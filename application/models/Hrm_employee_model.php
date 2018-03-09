@@ -101,4 +101,10 @@ class Hrm_employee_model extends CI_Model
 
     }
 
+    //get details fo thepay sheet
+    function get_user($User_ID){
+        $query=$this->db->query(" SELECT * from person natural join employee where person.User_ID='$User_ID' ");
+        return $query->row_array();
+
+    }
 }

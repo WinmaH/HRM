@@ -18,6 +18,19 @@ class Hrm_training_model extends CI_Model
         $query=$this->db->query("SELECT * from trainingprogram");
         return $query->num_rows();
     }
+
+    public function remove_employee($User_ID,$Program_ID){
+        $params=array('User_ID'=>$User_ID,
+        'Program_ID'=>$Program_ID);
+        $this->db->where($params);
+        $this->db->delete('participate');
+    }
+
+    public function get_program_title($Program_ID){
+        $query=$this->db->query("SELECT * FROM trainingprogram where Program_ID='$Program_ID'");
+        $row=$query->row_array();
+        return $row;
+    }
     public function add($params){
         $this->db->insert('trainingprogram',$params);
         return $this->db->insert_id();

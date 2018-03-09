@@ -12,8 +12,62 @@ class Hrm_salary extends CI_Controller
         $this->load->model('Hrm_employee_model');
 
         $this->load->library("Aauth");
+        $this->load->library('pdf_report');
 
         if(!$this->aauth->is_loggedin()) redirect('/login');
+    }
+
+    function pay_sheet_form(){
+        $data['user']=$data['user']=$this->Hrm_employee_model->get_employee();
+        $data['_view'] = 'hrm_paysheets/index';
+        $this->load->view('hrm_layouts/main',$data);
+    }
+
+    function generate_sheet(){
+        $year = $this->input->post('year');
+        $month= $this->input->post('month');
+
+        $emp=$this->input->post('emp');
+        $arr=explode(" ",$emp);
+        $User_ID=$arr[sizeof($arr)-1];
+
+        $result=$this->Hrm_salary_model->has_record($User_ID,$year,$month);
+        if($result==1){
+            // get the particular record and pass the details to the pdf generator file
+            $user=$this->Hrm_salary_model->get_particular_salary($User_ID,$year,$month);
+            $employee=$this->Hrm_employee_model->get_user($User_ID);
+            $data['first']=$employee['FirstName'];
+            $data['second']=$employee['MiddleName'];
+            $data['last']=$employee['LastName'];
+            $data['designation']=$employee['Designation'];
+            $advances=$user['Amount_advances'];
+            $data['advances']=$advances;
+            $cutoffs=$user['Other_cutoffs'];
+            $data['cutoffs']=$cutoffs;
+            $etf=$user['Amount_ETF'];
+            $data['etf']=$etf;
+            $epf=$user['Amount_EPF'];
+            $data['epf']=$epf;
+            $normal=$user['Normal_Salary'];
+            $basic=$this->Hrm_salary_model->get_basic();
+            $data['salary']=$normal+$basic;
+            $data['final']=$normal+$basic+$advances-$cutoffs-$etf-$epf;
+            $data['year']=$year;
+            $data['month']=$month;
+            $data['day']= date("Y-m-d");
+
+
+
+            $this->load->view('hrm_paysheets/view',$data);
+
+        } else{
+            // generate eror message as salary is not paid
+            $data['err']="Sorry your request cannot be proceed. Employee is not paid for the particular month !";
+            $data['_view'] = 'hrm_layouts/fail';
+            $this->load->view('hrm_layouts/main',$data);
+        }
+
+
     }
 
 
@@ -24,13 +78,11 @@ class Hrm_salary extends CI_Controller
         $year = date('Y');
         $m=date('m');
 
-
         $array=array('01'=>'January','02'=>'February','03'=>'March','04'=>'April','05'=>'May','06'=>'June','07'=>'July','08'=>'August','09'=>'September','10'=>'October','11'=>'November','12'=>'December');
         $month=$array[$m];
 
         $per_page = 25;
        $count = $this->Hrm_salary_model->get_salary_paid_count($year,$month);
-
 
        $pages = ceil($count/$per_page);
 
@@ -189,6 +241,35 @@ class Hrm_salary extends CI_Controller
         $data['basic']=$this->Hrm_salary_model->get_basic();
         $data['_view']='hrm_salary/employee_salary';
         $this->load->view('hrm_layouts/main',$data);
+
+    }
+
+    function load_payment_history(){
+        $data['_view']='hrm_salary/payment_history_form';
+        $this->load->view('hrm_layouts/main',$data);
+    }
+
+    function view_records(){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules("year","Year","required|exact_length[4]");
+        $year= $this->input->post('year');
+        $month=$this->input->post('month');
+
+            $page=1;
+            $per_page = 25;
+            $count = $this->Hrm_salary_model->get_salary_paid_count($year,$month);
+
+            $pages = ceil($count/$per_page);
+
+            $data['clients'] = $this->Hrm_salary_model->get_paged_salary($year,$month,($page-1)*$per_page, $per_page);
+            $data['pages'] = $pages;
+            $data['page'] = $page;
+            $data['basic']=$this->Hrm_salary_model->get_basic();
+            $data['taken_full']=$month;
+            $data['_view'] = 'hrm_salary/payment_history';
+            $this->load->view('hrm_layouts/main',$data);
+
+
 
     }
 

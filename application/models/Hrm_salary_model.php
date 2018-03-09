@@ -27,14 +27,13 @@ function get_salary_not_paid_count($year,$month){
     return$query->num_rows();
 }
 
-    function get_paged_not_salary($year,$month,$count,$offset){
+function get_paged_not_salary($year,$month,$count,$offset){
         $this->db->limit($count, $offset);
         $query=$this->db->query("SELECT * FROM employee NATURAL JOIN person WHERE User_ID NOT IN (SELECT User_ID FROM salary WHERE Year='$year' AND Month='$month')");
 
         return $query->result_array();
 
-    }
-
+}
     //get etf rate
     function get_etf(){
         $query=$this->db->query("SELECT * FROM etf");
@@ -91,5 +90,15 @@ function get_salary_not_paid_count($year,$month){
         $row=$query->row_array();
         return $row;
     }
+
+    function has_record($User_ID,$year,$month){
+        $query=$this->db->query("SELECT * from salary WHERE User_ID='$User_ID' AND Year='$year' AND Month='$month'");
+        return $query->num_rows();
+    }
+    function get_particular_salary($User_ID,$year,$month){
+        $query=$this->db->query("SELECT * from salary WHERE User_ID='$User_ID' AND Year='$year' AND Month='$month'");
+        return $query->row_array();
+    }
+
 
 }

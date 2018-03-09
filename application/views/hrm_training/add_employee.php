@@ -18,7 +18,7 @@
         ?>
         <div class="ui segments">
             <div class="ui segment">
-                <h3 class="ui header">Training Program Details</h3>
+                <h3 class="ui header"><?php echo $designation['Title'];?></h3>
             </div>
             <div class="ui segment">
                 <table class="ui celled table">
@@ -30,6 +30,7 @@
                         <th>Gender</th>
                         <th>TP</th>
                         <th>Email</th>
+                        <th></th>
                     </tr>
                     </thead>
 
@@ -41,6 +42,9 @@
                             <td><?php echo $c['Gender']; ?></td>
                             <td><?php echo  $c['TP'];?> </td>
                             <td><?php  echo $c['E_mail'];?></td>
+                            <td>
+                                <a href="<?php echo site_url('Hrm_training/remove/'.$c['User_ID'].'/'.$Program_ID); ?>" class="ui inverted red button" >Remove</a>
+                            </td>
                         </tr>
                     <?php } ?>
 
@@ -60,12 +64,14 @@
                 <div class="ui form">
                     <div class="four fields">
                         <div class="field">
-                            <label for="email">Select Employee :</label>
-                            <select  name="employee" class="ui dropdown">
+                            <label for="emp">Designation:</label>
+
+                            <select name="emp" class="ui dropdown">
                                 <?php foreach($user as $u){ ?>
-                                    <option><?php echo $u['FirstName']."   ".$u['LastName']."   ".$u['User_ID'];?></option>
+                                    <option><?php echo $u['FirstName']." ".$u['LastName']." ".$u['User_ID'];?></option>
                                 <?php }?>
                             </select>
+
                         </div>
                     </div>
                     <button type="submit" class="ui primary button">Add</button>

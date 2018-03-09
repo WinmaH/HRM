@@ -50,6 +50,8 @@ class Login extends CI_Controller
         $data['salary_paid']=$this->Hrm_salary_model->get_salary_paid_count($year,$m);
         $data['params1']=$this->Hrm_training_model->get_last_record();
        $male =$this->Hrm_dashboard_model->get_male_employee_count();
+       $data['taken_full']=$this->Hrm_training_model->get_program_count();
+       $data['taken_half']=$this->Hrm_leave_model->get_admin_leave_count();
        if($tot!=0){
            $male=$male*100/$tot;
        } else{
@@ -62,6 +64,9 @@ class Login extends CI_Controller
     public function view_employee_dashboard(){
         $data['params1']=$this->Hrm_training_model->get_last_record();
         $data['basic']=$this->Hrm_leave_model->get_last_record();
+        $data['epf']=$this->Hrm_salary_model->get_epf();
+        $data['etf']=$this->Hrm_salary_model->get_etf();
+
         $data['_view']='hrm_dashboard/view_employee';
         $this->load->view('hrm_layouts/main',$data);
     }

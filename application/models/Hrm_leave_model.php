@@ -92,6 +92,11 @@ class Hrm_leave_model extendS CI_Model
         return $query->result_array();
     }
 
+    public function get_admin_leave_count(){
+        $query=$this->db->query("SELECT leaves.Type,FirstName,MiddleName,LastName,Start_Year,Start_Month,Start_Date,End_Year,End_Month,End_Date,Reason,Description,Image,Leave_ID,ID from Leaves  JOIN Person ON  leaves.User_ID=Person.User_ID NATURAL JOIN AdminLeaveNotifications where Checked=FALSE");
+        return $query->num_rows();
+    }
+
     // employee leave notifications
     public function get_employee_leave(){
         $id=$this->session->userdata('username');
