@@ -67,7 +67,14 @@ if(isset($id)){
 if(isset($params1)){
     $data['params1']=$params1;
 }
+if(isset($params2)){
+    $data['params2']=$params2;
+}
+if(isset($params3)){
+    $data['params3']=$params3;
+}
 ?>
+
 <div class="main-content">
     <?php	if(isset($_view) && $_view)
         $this->load->view($_view,$data);

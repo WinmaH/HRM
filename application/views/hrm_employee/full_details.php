@@ -35,7 +35,7 @@ if(isset($user)){
                     <div class=" row">
                         <div class="five wide column">
                             <div class="ui teal card ">
-                                <div class="image">
+                                <div class=" ui medium image">
                                     <img src="<?=base_url($image )?>">
                                 </div>
                                 <div class="content" align="center">

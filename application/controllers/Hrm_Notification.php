@@ -40,6 +40,7 @@ class Hrm_Notification extends CI_Controller
         $params1=array('Leave_ID' => $Leave_ID,
                        'Status' => $Status);
         $this->Hrm_leave_model->notify($params1);
+
     }
 
      public function accept($Leave_ID,$ID){
@@ -49,6 +50,7 @@ class Hrm_Notification extends CI_Controller
              'Approved'=>true);
          $this->Hrm_leave_model->approve($Leave_ID,$ID,$params1,$params2);
          $this->notify($Leave_ID,true);
+         $this->show_admin_not();
      }
 
 
@@ -64,6 +66,7 @@ class Hrm_Notification extends CI_Controller
 
          $this->Hrm_leave_model->reject($Leave_ID,$ID,$params1,$params2);
          $this->notify($Leave_ID,false);
+         $this->show_admin_not();
 
      }
 

@@ -14,6 +14,7 @@ class Hrm_employee extends CI_Controller{
         $this->load->model('Hrm_employee_model');
         $this->load->library("Aauth");
         $this->load->helper('email');
+        $this->load->library('unit_test');
        if(!$this->aauth->is_loggedin()) redirect('/login');
     }
 
@@ -40,6 +41,7 @@ class Hrm_employee extends CI_Controller{
         $data['_view']='hrm_training/add_employee';
         $this->load->view('hrm_layouts/main',$data);
     }
+
 
     function add_new_employee(){
         //set form validation rules
@@ -166,8 +168,10 @@ class Hrm_employee extends CI_Controller{
 
                     );
                     //add new employee and create new user
+
                     $result=$this->Hrm_employee_model->check_employee($email,$tp);
                     if($result==0){
+                        //$this->add_employee_to_database($params1,$params2);
                         $this->Hrm_employee_model->add_employee($params1, $params2);
                         $this->aauth->create_user($email, '123456', $id);
                         $this->index();
@@ -264,11 +268,6 @@ class Hrm_employee extends CI_Controller{
                  'Religion' => $this->input->post('religion'),
                  'BloodGroup' => $this->input->post('bloodgroup'),
 
-
-                 //'User_ID'=>$User_ID,
-                 //'password'=>'1234',
-
-
              );
              $params2=array(
                  //'User_ID'=>$User_ID,
@@ -280,18 +279,51 @@ class Hrm_employee extends CI_Controller{
              $this->index();
 
          } else{
-             // echo validation_errors('<div class="error">', '</div>');
-             // same as the add function
-
              $err=validation_errors();
-             //$data['_view'] = 'hrm_employee/add';
-            // $data['designation']=$this->Hrm_employee_model->get_designation();
-            // $data['basic']=$this->Hrm_employee_model->get_basic();
              $data['err']=$err;
-             //$this->load->view('hrm_layouts/main',$data);
              $this->edit($User_ID,$err);
-             // $this->add($err);
          }
+
+     }
+
+
+
+
+
+
+
+
+    function get_basic(){
+        return $this->Hrm_employee_model->get_basic();
+    }
+    function get_designation(){
+        return  $this->Hrm_employee_model->get_designation();
+
+    }
+
+
+     public function test(){
+
+         $answer=$this->get_basic();
+         $ans=0;
+         foreach ($answer as $a){
+             $ans=$a['Basic_salary'];
+         }
+         $expected=45000;
+         $test_name = 'Test case for getting basic salary';
+         $this->unit->run($ans,$expected,$test_name);
+
+         $answer=$this->get_designation();
+         $answ=array();
+         foreach ($answer as $a){
+             $ans=$a['Title'];
+             array_push($answ,$ans);
+         }
+         $expected=array('Department Head','Executive officer','HR Manager','Normal Employee','Senior Employee');
+         $test_name = 'Test case for getting Designation List';
+         $this->unit->run($answ,$expected,$test_name);
+
+         echo $this->unit->report();
 
      }
 

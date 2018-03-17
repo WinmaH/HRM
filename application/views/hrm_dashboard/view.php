@@ -193,6 +193,66 @@
                     </div>
             </div>
             </div>
+        <!-- display the major content information bottom-->
+
+            <div class="ui segment">
+
+                <div class="ui grid">
+
+                    <div class="eight wide column">
+                        <div class="ui items">
+                            <div class="item">
+                                <div class="ui tiny image">
+                                    <img src="<?=base_url('assets/img/etf.png' )?>">
+                                </div>
+                                <div class=" content">
+                                    <div class="header"><?php echo $etf;?>%</div>
+                                    <div class="meta">
+                                        <span class="price">Percentage from the Salary</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>
+                                        <div class="ui statistic">
+
+                                            <div class="label">
+                                              ETF Current Rate
+                                            </div>
+                                        </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="eight wide column">
+                        <div class="ui items">
+                            <div class="item">
+                                <div class="ui tiny image">
+                                    <img src="<?=base_url('assets/img/epf.png' )?>">
+                                </div>
+                                <div class="content">
+                                    <div class="header"><?php echo $epf;?>%</div>
+                                    <div class="meta">
+                                        <span class="price">Percentage from the Salary</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>
+                                        <div class="ui statistic">
+                                            <div class="label">
+                                               EPF Current Rate
+                                            </div>
+                                        </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
     </div>

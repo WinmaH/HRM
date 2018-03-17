@@ -27,6 +27,13 @@ function get_salary_not_paid_count($year,$month){
     return$query->num_rows();
 }
 
+//check whether a particular employee is paid for that month
+function get_employee_paid($year,$month){
+    $id=$this->session->userdata('username');
+    $query=$this->db->query("SELECT * FROM salary WHERE Year='$year' AND Month='$month' AND User_ID='$id'");
+    return $query->num_rows();
+}
+
 function get_paged_not_salary($year,$month,$count,$offset){
         $this->db->limit($count, $offset);
         $query=$this->db->query("SELECT * FROM employee NATURAL JOIN person WHERE User_ID NOT IN (SELECT User_ID FROM salary WHERE Year='$year' AND Month='$month')");
@@ -99,6 +106,16 @@ function get_paged_not_salary($year,$month,$count,$offset){
         $query=$this->db->query("SELECT * from salary WHERE User_ID='$User_ID' AND Year='$year' AND Month='$month'");
         return $query->row_array();
     }
+
+    function edit($params1,$params2,$params3){
+        $this->db->empty_table('basic');
+        $this->db->empty_table('etf');
+        $this->db->empty_table('epf');
+        $this->db->insert('basic',$params1);
+        $this->db->insert('etf',$params2);
+        $this->db->insert('epf',$params3);
+    }
+
 
 
 }

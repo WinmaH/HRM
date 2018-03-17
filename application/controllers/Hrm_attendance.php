@@ -14,6 +14,7 @@ class Hrm_attendance extends CI_Controller
         //load helpers and libraries.
 
         $this->load->library("Aauth");
+        $this->load->library("unit_test");
         $this->load->helper('email');
         $this->load->model('Hrm_attendance_model');
         if(!$this->aauth->is_loggedin()) redirect('/login');
@@ -94,13 +95,11 @@ class Hrm_attendance extends CI_Controller
                             $data['_view'] = 'hrm_layouts/fail';
                             $this->load->view('hrm_layouts/main',$data);
                         }else{
-                            
+
                         $this->Hrm_attendance_model->enter_attendance($params);
 
                         }
                     }
-
-                  //  echo  $data_value;
 
                 }
 
@@ -116,15 +115,44 @@ class Hrm_attendance extends CI_Controller
             $data['_view'] = 'hrm_layouts/fail';
             $this->load->view('hrm_layouts/main',$data);
         }
-
-
     }
     public function monthly_attendance($User_ID){
         $data['clients']=$this->Hrm_attendance_model->get_employee_monthly_attendance($User_ID);
         $data['_view'] = 'hrm_attendance/employee_attendance';
-
         $this->load->view('hrm_layouts/main',$data);
+    }
 
-}
+
+    public function has_record($params){
+        return$this->Hrm_attendance_model->has_record($params);
+    }
+
+    public function get_attendance_count($year,$month,$day){
+        return $this->Hrm_attendance_model->get_attendance_count($year,$month,$day);
+    }
+
+    public function test(){
+        $params=array('User_ID'=>'20180001W',
+            'Present_Year'=>'2018',
+            'Present_Month'=>'3',
+            'Present_Date'=>'9',
+            'present_Hour'=>'8',
+            'Present_Minute'=>'23',
+            'Present_Second'=>'10');
+
+        $answer=$this->has_record($params);
+        $expected=1;
+        $test_name = 'Test case for checking attendance details';
+        $this->unit->run($answer,$expected,$test_name);
+
+        $answer=$this->get_attendance_count('2018','3','9');
+        $expected=3;
+        $test_name = 'Test case to get attendance count';
+        $this->unit->run($answer,$expected,$test_name);
+
+
+        echo $this->unit->report();
+
+    }
 
 }

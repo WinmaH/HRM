@@ -10,7 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller
 
 {
-
     function __construct()
     {
         parent::__construct();
@@ -19,17 +18,14 @@ class Login extends CI_Controller
         $this->load->model('Hrm_salary_model');
         $this->load->model('Hrm_training_model');
         $this->load->model('Hrm_leave_model');
+        $this->load->model('Hrm_employee_model');
         $this->load->library("Aauth");
+        $this->load->library("unit_test");
 
     }
 
     public function index()
     {
-       // $this->load->view('hrm_user/user_login');
-       // parent::__construct();
-       // $this->load->library("Aauth");
-       // $this->load->model('Hrm_dashboard_model');
-
 
         // calls on the login function
         $this->login1();
@@ -49,15 +45,17 @@ class Login extends CI_Controller
         $data['new_emp']=$this->Hrm_dashboard_model->get_new_employee_count($year,$month);
         $data['salary_paid']=$this->Hrm_salary_model->get_salary_paid_count($year,$m);
         $data['params1']=$this->Hrm_training_model->get_last_record();
-       $male =$this->Hrm_dashboard_model->get_male_employee_count();
-       $data['taken_full']=$this->Hrm_training_model->get_program_count();
-       $data['taken_half']=$this->Hrm_leave_model->get_admin_leave_count();
-       if($tot!=0){
+        $male =$this->Hrm_dashboard_model->get_male_employee_count();
+        $data['taken_full']=$this->Hrm_training_model->get_program_count();
+        $data['taken_half']=$this->Hrm_leave_model->get_admin_leave_count();
+        $data['epf']=$this->Hrm_salary_model->get_epf();
+        $data['etf']=$this->Hrm_salary_model->get_etf();
+        if($tot!=0){
            $male=$male*100/$tot;
-       } else{
+        } else{
            $male=0;
-       }
-       $data['male']=$male;
+        }
+        $data['male']=$male;
         $data[ '_view']='hrm_dashboard/view';
         $this->load->view('hrm_layouts/main',$data);
     }
@@ -66,9 +64,21 @@ class Login extends CI_Controller
         $data['basic']=$this->Hrm_leave_model->get_last_record();
         $data['epf']=$this->Hrm_salary_model->get_epf();
         $data['etf']=$this->Hrm_salary_model->get_etf();
-
+        $data['taken_half']=$this->Hrm_leave_model->get_employee_leave_count();
+        $data['taken_full']=$this->Hrm_training_model->get_program_count();
+        $year = date('Y');
+        $month=date('m');
+        $array=array('01'=>'January','02'=>'February','03'=>'March','04'=>'April','05'=>'May','06'=>'June','07'=>'July','08'=>'August','09'=>'September','10'=>'October','11'=>'November','12'=>'December');
+        $m=$array[$month];
+        $data['salary_paid']=$this->Hrm_salary_model->get_employee_paid($year,$m);
+        $data['total']=$this->Hrm_employee_model->get_employee_designation();
         $data['_view']='hrm_dashboard/view_employee';
         $this->load->view('hrm_layouts/main',$data);
+    }
+
+    public function validate($user,$pass,$remember){
+        $result = $this->user_model->login($user , $pass,$remember);
+        return $result;
     }
 
 
@@ -82,7 +92,8 @@ class Login extends CI_Controller
 
         if(($user!=null) && ($pass!=null)){
             $this->load->model('user_model');
-            $result = $this->user_model->login($user , $pass,$remember);
+            //$result = $this->user_model->login($user , $pass,$remember);
+            $result=$this->validate($user,$pass,$remember);
 
             //if the user name and password is valid load the dashboard
             if($result){
@@ -105,5 +116,25 @@ class Login extends CI_Controller
 
     }
 
+
+
+
+
+
+    public function test(){
+        $answer=$this->validate('admin','123456',true);
+        $expected=1;
+        $test_name = 'login test with correct user name and password';
+        $this->unit->run($answer,$expected,$test_name);
+
+        $answer=$this->validate('admin','123',true);
+        $expected=0;
+        $test_name = 'login test with incorrect user name and password';
+        $this->unit->run($answer,$expected,$test_name);
+
+        echo $this->unit->report();
+
+
+    }
 
 }

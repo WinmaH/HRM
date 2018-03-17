@@ -50,7 +50,7 @@
 
                             <td>
 
-                                <a href="<?php echo site_url(''); ?>" class="ui inverted blue button" ><i class="Search icon"></i>View Leave History</a>
+                                <a href="<?php echo site_url('Hrm_leaves/view/'.$u['User_ID']); ?>" class="ui inverted blue button" ><i class="Search icon"></i>View Leave History</a>
                                 <a href="<?php echo site_url('Hrm_Notification/accept/'.$u['Leave_ID'].'/'.$u['ID']); ?>" class="ui inverted green button" ><i class="Plus icon"></i>Accept</a>
                                 <a href="<?php echo site_url('Hrm_Notification/reject/'.$u['Leave_ID'].'/'.$u['ID']); ?>" class="ui inverted red button" ><i class="Remove icon"></i>Reject</a>
 

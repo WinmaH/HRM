@@ -88,7 +88,7 @@ class Hrm_leave_model extendS CI_Model
 
     //admin leave notifications
     public function get_admin_leave(){
-        $query=$this->db->query("SELECT leaves.Type,FirstName,MiddleName,LastName,Start_Year,Start_Month,Start_Date,End_Year,End_Month,End_Date,Reason,Description,Image,Leave_ID,ID from Leaves  JOIN Person ON  leaves.User_ID=Person.User_ID NATURAL JOIN AdminLeaveNotifications where Checked=FALSE");
+        $query=$this->db->query("SELECT leaves.Type,FirstName,MiddleName,LastName,Start_Year,Start_Month,Start_Date,End_Year,End_Month,End_Date,Reason,Description,Image,Leave_ID,ID,Person.User_ID from Leaves  JOIN Person ON  leaves.User_ID=Person.User_ID NATURAL JOIN AdminLeaveNotifications where Checked=FALSE");
         return $query->result_array();
     }
 
@@ -103,7 +103,16 @@ class Hrm_leave_model extendS CI_Model
         $query=$this->db->query("SELECT *FROM employeeleavenotifications NATURAL JOIN leaves where User_ID='$id' and Checked=false");
         return $query->result_array();
     }
+    public function get_employee_leave_count(){
+        $id=$this->session->userdata('username');
+        $query=$this->db->query("SELECT *FROM employeeleavenotifications NATURAL JOIN leaves where User_ID='$id' and Checked=false");
+        return $query->num_rows();
+    }
 
+    public function view($User_ID){
+        $query=$this->db->query("SELECT *FROM leaves where User_ID='$User_ID' and Approved=true");
+        return $query->result_array();
+    }
    // reject leaves
 
     public function reject($Leave_ID,$ID,$params1,$params2){

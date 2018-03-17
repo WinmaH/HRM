@@ -22,7 +22,7 @@
                             <td><?php echo $c['Venue'];; ?></td>
                             <td><?php echo $c['Program_Date']; ?></td>
                             <td><?php echo $c['Description']; ?></td>
-                            <?php if(date("Y-m-d")<= new DateTime($c['Program_Date'])){ ?>
+                            <?php if(date("Y-m-d")<= date('Y-m-d',strtotime($c['Program_Date']))){ ?>
                                 <td> <a href="<?php echo site_url('Hrm_training/get_employee/'.$c['Program_ID']); ?>" class="ui inverted blue button" >Add Employee</a></td>
                             <?php } ?>
                         </tr>

@@ -73,6 +73,12 @@ class Hrm_employee_model extends CI_Model
         $this->db->update('employee',$params2);
     }
 
+    public function update_designation($User_ID,$params){
+        $this->db->where('User_ID',$User_ID);
+        $this->db->update('employee',$params);
+
+    }
+
     function count_employee(){
         return $this->db->count_all_results('person');
     }
@@ -92,6 +98,14 @@ class Hrm_employee_model extends CI_Model
             $cv=$r['CV'];
         }
         RETURN $cv;
+    }
+
+    //get employee designation
+    function get_employee_designation(){
+        $id=$this->session->userdata('username');
+        $query=$this->db->query(" SELECT * from employee  where User_ID='$id' ");
+        $em=$query->row_array();
+        return $em['Designation'];
     }
 
     //get details of a single user

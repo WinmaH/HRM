@@ -35,6 +35,11 @@ class Hrm_leaves extends CI_Controller
         $this->load->view('hrm_layouts/main',$data);
         $this->load->view('hrm_templates/footer');
     }
+    public function view($User_ID){
+        $data['clients']=$this->Hrm_leave_model->view($User_ID);
+        $data['_view']='leaves/history';
+        $this->load->view('hrm_layouts/main',$data);
+    }
 
     public function apply_leave(){
         $this->load->library('form_validation');

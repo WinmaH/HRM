@@ -10,15 +10,15 @@
                     <div class="statistic">
                         <div class="value">
                             <img src="<?=base_url('assets/img/emp.png' )?>" class="ui circular inline image">
-                            1
+
                         </div>
                         <div class="label">
-                            Employees
+                            <?php echo $total;?>
                         </div>
                     </div>
                     <div class="statistic">
                         <div class="value">
-                            <img src="<?=base_url('assets/img/application.jpg' )?>" class="ui circular inline image">1
+                            <img src="<?=base_url('assets/img/application.jpg' )?>" class="ui circular inline image"><?php echo $taken_half;?>
 
                         </div>
                         <div class="label">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="statistic">
                         <div class="value">
-                            <img src="<?=base_url('assets/img/salary.png' )?>" class="ui circular inline image">yes
+                            <img src="<?=base_url('assets/img/salary.png' )?>" class="ui circular inline image"><?php if($salary_paid==1){echo 'Yes';} else{echo 'No';}?>
                         </div>
                         <div class="label">
                             Salary Paid
@@ -35,7 +35,7 @@
                     </div>
                     <div class="statistic">
                         <div class="value">
-                            <img src="<?=base_url('assets/img/training.png' )?>" class="ui circular inline image">1
+                            <img src="<?=base_url('assets/img/training.png' )?>" class="ui circular inline image"><?php echo $taken_half;?>
                         </div>
                         <div class="label">
                             Training Programs
