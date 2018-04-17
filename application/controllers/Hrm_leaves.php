@@ -14,10 +14,13 @@ class Hrm_leaves extends CI_Controller
         parent::__construct();
         $this->load->model('Hrm_leave_model');
         $this->load->library('session');
+        $this->load->library('unit_test');
+        $this->output->enable_profiler(TRUE);
     }
 
-    public function apply($err=null,$success=null){
+    //prompts the leave application
 
+    public function apply($err=null,$success=null){
         $year=date('Y');
         $month=date('m');
         $user_ID=$this->session->userdata('username');
@@ -29,21 +32,21 @@ class Hrm_leaves extends CI_Controller
         $data['max_full']=$this->Hrm_leave_model->get_max_half();
         $data['max_half']=$this->Hrm_leave_model->get_max_full();
         $data['_view']='leaves/apply';
-
-
         $this->load->view('hrm_templates/header',$data);
         $this->load->view('hrm_layouts/main',$data);
         $this->load->view('hrm_templates/footer');
     }
+
+    //prompts the leave history of the given employee
     public function view($User_ID){
         $data['clients']=$this->Hrm_leave_model->view($User_ID);
         $data['_view']='leaves/history';
         $this->load->view('hrm_layouts/main',$data);
     }
 
+    // get the leave request details when the employee submits the leave application form
     public function apply_leave(){
         $this->load->library('form_validation');
-
         $this->form_validation->set_rules("start","Start Date","required");
         $this->form_validation->set_rules("end","End Date","required");
         $this->form_validation->set_rules("type","Leave Type","required");
@@ -138,6 +141,41 @@ class Hrm_leaves extends CI_Controller
             $this->apply($err);
 
         }
+    }
+
+
+
+    //code for unit tests
+    public function test(){
+
+        $ans=$this->Hrm_leave_model->get_max_full() ;
+        $expected=4;
+        $test_name = 'Test case for getting maximum full day leave count';
+        $this->unit->run($ans,$expected,$test_name);
+
+
+        $ans=$this->Hrm_leave_model->get_max_half() ;
+        $expected=4;
+        $test_name = 'Test case for getting maximum half day leave  count';
+        $this->unit->run($ans,$expected,$test_name);
+
+        $user_ID='20180001W';
+        $year=2018;
+        $month=3;
+        $ans=$this->Hrm_leave_model->get_taken_half($user_ID,$year,$month);;
+        $expected=0;
+        $test_name = 'Test case for taken maximum full day leave count of employee Winma for march';
+        $this->unit->run($ans,$expected,$test_name);
+
+
+        $ans=$this->Hrm_leave_model->get_taken_half($user_ID,$year,$month); ;
+        $expected=0;
+        $test_name = 'Test case for taken maximum half day leave count of employee Winma for march';
+        $this->unit->run($ans,$expected,$test_name);
+
+
+        echo $this->unit->report();
+
     }
 
 

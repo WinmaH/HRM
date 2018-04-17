@@ -14,8 +14,7 @@ class Hrm_rates extends CI_Controller
         parent::__construct();
 
         $this->load->model('Hrm_salary_model');
-
-
+        $this->output->enable_profiler(TRUE);
         if(!$this->aauth->is_loggedin()) redirect('/login');
     }
 

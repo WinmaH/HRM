@@ -20,5 +20,6 @@
         $('.ui.basic.modal')
             .modal('show')
         ;
-    });
+    }
+    );
 </script>

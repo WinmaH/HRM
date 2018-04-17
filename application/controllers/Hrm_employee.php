@@ -15,9 +15,12 @@ class Hrm_employee extends CI_Controller{
         $this->load->library("Aauth");
         $this->load->helper('email');
         $this->load->library('unit_test');
+       // $this->output->enable_profiler(TRUE);
        if(!$this->aauth->is_loggedin()) redirect('/login');
+
     }
 
+    //prompt the basic employee details
     function index($page = 1)
     {
         $per_page = 25;
@@ -30,6 +33,7 @@ class Hrm_employee extends CI_Controller{
         $this->load->view('hrm_layouts/main',$data);
     }
 
+    //prompts new employee form
     function add(){
         $data['_view'] = 'hrm_employee/add';
         $data['designation']=$this->Hrm_employee_model->get_designation();
@@ -42,8 +46,12 @@ class Hrm_employee extends CI_Controller{
         $this->load->view('hrm_layouts/main',$data);
     }
 
-
+    //get employee details and create a new employee
     function add_new_employee(){
+
+        // bench marks
+
+        $this->benchmark->mark('FormValidation_start');
         //set form validation rules
         $this->load->library('form_validation');
         $this->form_validation->set_rules("email","Email","trim|required|valid_email");
@@ -58,6 +66,8 @@ class Hrm_employee extends CI_Controller{
         $this->form_validation->set_rules("city","City","required");
         $this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[10]");
         $this->form_validation->set_rules("additional","Additional Fee","required");
+
+        $this->benchmark->mark('FormValidation_end');
 
         if($this->form_validation->run()){
             // if there are no errors add to the database
@@ -172,9 +182,15 @@ class Hrm_employee extends CI_Controller{
                     $result=$this->Hrm_employee_model->check_employee($email,$tp);
                     if($result==0){
                         //$this->add_employee_to_database($params1,$params2);
+
+                        //bench marks
+                        $this->benchmark->mark('CreateUser_start');
+
                         $this->Hrm_employee_model->add_employee($params1, $params2);
                         $this->aauth->create_user($email, '123456', $id);
                         $this->index();
+
+                        $this->benchmark->mark('CreateUser_end');
                     } else{
                         $data['err']="A user is already registered with the same email or mobile number";
                         $data['_view']='hrm_layouts/fail';
@@ -206,6 +222,8 @@ class Hrm_employee extends CI_Controller{
         }
 
     }
+
+    //open the cv of the particular employee
      function open($User_ID){
         $cv=$this->Hrm_employee_model->get_cv($User_ID);
         $file = './files/'.$cv;
@@ -218,7 +236,13 @@ class Hrm_employee extends CI_Controller{
      }
 
      function full($User_ID){
+         //bench marks
+
+         $this->benchmark->mark('GetUserDetails_start');
+
          $user=$this->Hrm_employee_model->get_single_user($User_ID);
+
+         $this->benchmark->mark('GetUserDetails_end');
          $data['user']=$user;
          $data['_view']='hrm_employee/full_details';
          $this->load->view('hrm_layouts/main',$data);
@@ -226,18 +250,28 @@ class Hrm_employee extends CI_Controller{
      }
 
      function edit($User_ID,$err=null){
+         //bench marks
+
+         $this->benchmark->mark('GetPreviousDetails_start');
+
          $user=$this->Hrm_employee_model->get_single_user($User_ID);
-        $data['user']=$user;
+         $data['user']=$user;
          $data['err']=$err;
          $data['_view']='hrm_employee/edit';
          $data['designation']=$this->Hrm_employee_model->get_designation();
          $this->load->view('hrm_layouts/main',$data);
+
+         $this->benchmark->mark('GetPreviousDetails_end');
 
      }
 
      function edit_employee($User_ID){
 
          $this->load->library('form_validation');
+
+         //bench marks
+         $this->benchmark->mark('ValidateNewDetails_start');
+
          $this->form_validation->set_rules("email","Email","trim|required|valid_email");
          $this->form_validation->set_rules("first_name","First Name","required");
          $this->form_validation->set_rules("last_name","Last Name","required");
@@ -247,6 +281,8 @@ class Hrm_employee extends CI_Controller{
           $this->form_validation->set_rules("postbox","Post Box","required");
          $this->form_validation->set_rules("city","City","required");
          $this->form_validation->set_rules("mobile","Mobile Number","required|exact_length[9]");
+
+         $this->benchmark->mark('ValidateNewDetails_start');
 
          if($this->form_validation->run()){
              // if there are no errors add to the database
@@ -275,8 +311,12 @@ class Hrm_employee extends CI_Controller{
 
              );
 
+             //bench marks
+
+             $this->benchmark->mark('EditNewDetails_start');
              $this->Hrm_employee_model->edit_employee($params1,$params2,$User_ID);
              $this->index();
+             $this->benchmark->mark('EditNewDetails_end');
 
          } else{
              $err=validation_errors();
@@ -285,23 +325,17 @@ class Hrm_employee extends CI_Controller{
          }
 
      }
-
-
-
-
-
-
-
-
+    //code to get the basic salary of an employee
     function get_basic(){
         return $this->Hrm_employee_model->get_basic();
     }
+    //code to get the list of designation
     function get_designation(){
         return  $this->Hrm_employee_model->get_designation();
 
     }
 
-
+    // code for unit tests
      public function test(){
 
          $answer=$this->get_basic();
@@ -319,7 +353,7 @@ class Hrm_employee extends CI_Controller{
              $ans=$a['Title'];
              array_push($answ,$ans);
          }
-         $expected=array('Department Head','Executive officer','HR Manager','Normal Employee','Senior Employee');
+         $expected=array('Department-Head','Executive-officer','HR-Manager','Normal-Employee','Senior-Employee');
          $test_name = 'Test case for getting Designation List';
          $this->unit->run($answ,$expected,$test_name);
 

@@ -136,7 +136,7 @@ class Hrm_leave_model extendS CI_Model
         $this->db->update('leaves',$params2);
 
     }
-    // get employee notifications
+    // send employee notifications about the acceptance or rejection of the leave request.
     public function notify($params1){
         $this->db->insert('employeeleavenotifications',$params1);
     }

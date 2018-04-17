@@ -21,16 +21,14 @@ class Login extends CI_Controller
         $this->load->model('Hrm_employee_model');
         $this->load->library("Aauth");
         $this->load->library("unit_test");
+        //$this->output->enable_profiler(TRUE);
 
     }
 
     public function index()
     {
-
         // calls on the login function
         $this->login1();
-
-
 
     }
     public function view_dashboard(){
@@ -93,15 +91,29 @@ class Login extends CI_Controller
         if(($user!=null) && ($pass!=null)){
             $this->load->model('user_model');
             //$result = $this->user_model->login($user , $pass,$remember);
+
+            //Bench marks
+
+            $this->benchmark->mark('ValidateUser_start');
             $result=$this->validate($user,$pass,$remember);
+            $this->benchmark->mark('ValidateUser_end');
 
             //if the user name and password is valid load the dashboard
             if($result){
                 if($this->aauth->is_admin()){
+
+                    // Bench marks
+
+                    $this->benchmark->mark('ViewInterface_start');
                     $this->view_dashboard();
+                    $this->benchmark->mark('ViewInterface_end');
                 }
                 else{
+                    //Bench marks
+
+                    $this->benchmark->mark('ViewInterface_start');
                     $this->view_employee_dashboard();
+                    $this->benchmark->mark('ViewInterface_end');
                 }
                //$this->view_dashboard();
             }else{
@@ -115,10 +127,6 @@ class Login extends CI_Controller
         }
 
     }
-
-
-
-
 
 
     public function test(){
