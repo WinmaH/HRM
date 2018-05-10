@@ -125,14 +125,14 @@ class CI_Config {
 	 */
 	public function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
 	{
-		$file = ($file === '') ? 'config' : str_replace('20180425161415_initial.php', '', $file);
+		$file = ($file === '') ? 'config' : str_replace('.php', '', $file);
 		$loaded = FALSE;
 
 		foreach ($this->_config_paths as $path)
 		{
 			foreach (array($file, ENVIRONMENT.DIRECTORY_SEPARATOR.$file) as $location)
 			{
-				$file_path = $path.'config/'.$location.'20180425161415_initial.php';
+				$file_path = $path.'config/'.$location.'.php';
 				if (in_array($file_path, $this->is_loaded, TRUE))
 				{
 					return TRUE;
@@ -182,7 +182,7 @@ class CI_Config {
 			return FALSE;
 		}
 
-		show_error('The configuration file '.$file.'20180425161415_initial.php does not exist.');
+		show_error('The configuration file '.$file.'.php does not exist.');
 	}
 
 	// --------------------------------------------------------------------

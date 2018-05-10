@@ -153,12 +153,12 @@
 
                             <div class="ui blue label">
                                 Present
-                                <div class="detail">10</div>
+                                <div class="detail"><?php echo $present;?></div>
                             </div>
 
                             <div class="ui blue label">
                                 On Leave
-                                <div class="detail">1</div>
+                                <div class="detail"><?php echo $leaves;?></div>
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                             </p>
                             <div class="ui green label">
                                 Employee Partcipation
-                                <div class="detail">1</div>
+                                <div class="detail"><?php echo $program_count; ?></div>
                             </div>
                         </div>
                     </div>

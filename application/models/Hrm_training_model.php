@@ -52,11 +52,15 @@ class Hrm_training_model extends CI_Model
     }
 
     function get_last_record()
-
     {
         $query=$this->db->query("SELECT * FROM trainingprogram ORDER BY Program_ID DESC LIMIT 1");
         $row=$query->row_array();
         return $row;
+    }
+
+    function get_last_employee_count($Program_ID){
+        $query=$this->db->query("SELECT * from participate WHERE Program_ID='$Program_ID'");
+        return $query->num_rows();
     }
 
 }

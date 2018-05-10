@@ -9,7 +9,14 @@
 class Hrm_attendance_model extends CI_Model
 {
 public function  get_attendance_count($year,$month,$day){
+
     $query=$this->db->query("SELECT * FROM attendance NATURAL JOIN person WHERE Present_Year='$year' AND Present_Month='$month' AND Present_Date='$day'");
+    return $query->num_rows();
+}
+
+public function get_employee_attendance_count($year,$month,$day){
+    $id=$this->session->userdata('username');
+    $query=$this->db->query("SELECT * FROM attendance NATURAL JOIN person WHERE Present_Year='$year' AND Present_Month='$month' AND Present_Date='$day' AND User_ID='$id'");
     return $query->num_rows();
 }
     public function get_attendance_details($year,$month,$day,$offset=0, $count=500){

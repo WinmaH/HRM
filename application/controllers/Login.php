@@ -19,6 +19,7 @@ class Login extends CI_Controller
         $this->load->model('Hrm_training_model');
         $this->load->model('Hrm_leave_model');
         $this->load->model('Hrm_employee_model');
+        $this->load->model('Hrm_attendance_model');
         $this->load->library("Aauth");
         $this->load->library("unit_test");
         //$this->output->enable_profiler(TRUE);
@@ -37,17 +38,27 @@ class Login extends CI_Controller
         $basic=$this->Hrm_salary_model->get_basic();
         $year = date('Y');
         $month=date('m');
+        $day=date('d');
         $array=array('01'=>'January','02'=>'February','03'=>'March','04'=>'April','05'=>'May','06'=>'June','07'=>'July','08'=>'August','09'=>'September','10'=>'October','11'=>'November','12'=>'December');
         $m=$array[$month];
         $data['total']=$this->Hrm_dashboard_model->get_tot_salary_this_month($year,$m,$basic);
         $data['new_emp']=$this->Hrm_dashboard_model->get_new_employee_count($year,$month);
         $data['salary_paid']=$this->Hrm_salary_model->get_salary_paid_count($year,$m);
         $data['params1']=$this->Hrm_training_model->get_last_record();
+        // get the number of employees who participate in the last training program
+
+        $program=$this->Hrm_training_model->get_last_record();
+        $program_id=$program['Program_ID'];
+        $data['program_count']=$this->Hrm_training_model->get_last_employee_count($program_id);
+
         $male =$this->Hrm_dashboard_model->get_male_employee_count();
         $data['taken_full']=$this->Hrm_training_model->get_program_count();
         $data['taken_half']=$this->Hrm_leave_model->get_admin_leave_count();
         $data['epf']=$this->Hrm_salary_model->get_epf();
         $data['etf']=$this->Hrm_salary_model->get_etf();
+        // attendance details
+        $data['present']=$this->Hrm_attendance_model->get_attendance_count($year,$month,$day);
+
         if($tot!=0){
            $male=$male*100/$tot;
         } else{
@@ -64,12 +75,23 @@ class Login extends CI_Controller
         $data['etf']=$this->Hrm_salary_model->get_etf();
         $data['taken_half']=$this->Hrm_leave_model->get_employee_leave_count();
         $data['taken_full']=$this->Hrm_training_model->get_program_count();
+
+        //get the no of employees participated in the last training program
+
+        $program=$this->Hrm_training_model->get_last_record();
+        $program_id=$program['Program_ID'];
+        $data['program_count']=$this->Hrm_training_model->get_last_employee_count($program_id);
         $year = date('Y');
         $month=date('m');
+        $day=date('d');
         $array=array('01'=>'January','02'=>'February','03'=>'March','04'=>'April','05'=>'May','06'=>'June','07'=>'July','08'=>'August','09'=>'September','10'=>'October','11'=>'November','12'=>'December');
         $m=$array[$month];
         $data['salary_paid']=$this->Hrm_salary_model->get_employee_paid($year,$m);
         $data['total']=$this->Hrm_employee_model->get_employee_designation();
+        $user_ID=$this->session->userdata('username');
+        $data['leaves']=$this->Hrm_leave_model->get_taken_full($user_ID,$year,$month) + $this->Hrm_leave_model->get_taken_half($user_ID,$year,$month);
+
+        $data['present']=$this->Hrm_attendance_model->get_employee_attendance_count($year,$month,$day);
         $data['_view']='hrm_dashboard/view_employee';
         $this->load->view('hrm_layouts/main',$data);
     }

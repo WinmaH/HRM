@@ -4147,8 +4147,8 @@ class TCPDF {
 	protected function getFontsList() {
 		if (($fontsdir = opendir(TCPDF_FONTS::_getfontpath())) !== false) {
 			while (($file = readdir($fontsdir)) !== false) {
-				if (substr($file, -4) == '20180425161415_initial.php') {
-					array_push($this->fontlist, strtolower(basename($file, '20180425161415_initial.php')));
+				if (substr($file, -4) == '.php') {
+					array_push($this->fontlist, strtolower(basename($file, '.php')));
 				}
 			}
 			closedir($fontsdir);
@@ -4259,12 +4259,12 @@ class TCPDF {
 		// search and include font file
 		if (TCPDF_STATIC::empty_string($fontfile) OR (!@file_exists($fontfile))) {
 			// build a standard filenames for specified font
-			$tmp_fontfile = str_replace(' ', '', $family).strtolower($style).'20180425161415_initial.php';
+			$tmp_fontfile = str_replace(' ', '', $family).strtolower($style).'.php';
 			$fontfile = TCPDF_FONTS::getFontFullPath($tmp_fontfile, $fontdir);
 			if (TCPDF_STATIC::empty_string($fontfile)) {
 				$missing_style = true;
 				// try to remove the style part
-				$tmp_fontfile = str_replace(' ', '', $family).'20180425161415_initial.php';
+				$tmp_fontfile = str_replace(' ', '', $family).'.php';
 				$fontfile = TCPDF_FONTS::getFontFullPath($tmp_fontfile, $fontdir);
 			}
 		}

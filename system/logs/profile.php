@@ -5,9 +5,9 @@
 
 
 <table style="width:100%;">
-<tr><td style="padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;">Loading Time: Base Classes&nbsp;&nbsp;</td><td style="padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;">0.0190</td></tr>
-<tr><td style="padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;">Controller Execution Time ( Hrm Salary / Pay Sheet Form )&nbsp;&nbsp;</td><td style="padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;">0.0976</td></tr>
-<tr><td style="padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;">Total Execution Time&nbsp;&nbsp;</td><td style="padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;">0.1174</td></tr>
+<tr><td style="padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;">Loading Time: Base Classes&nbsp;&nbsp;</td><td style="padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;">0.0292</td></tr>
+<tr><td style="padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;">Controller Execution Time ( Hrm Leaves / Test )&nbsp;&nbsp;</td><td style="padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;">0.1111</td></tr>
+<tr><td style="padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;">Total Execution Time&nbsp;&nbsp;</td><td style="padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;">0.1422</td></tr>
 </table>
 </fieldset>
 
@@ -17,7 +17,7 @@
 
 <fieldset id="ci_profiler_memory_usage" style="border:1px solid #5a0099;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">
 <legend style="color:#5a0099;">&nbsp;&nbsp;MEMORY USAGE&nbsp;&nbsp;</legend>
-<div style="color:#5a0099;font-weight:normal;padding:4px 0 4px 0;">9,667,160 bytes</div></fieldset>
+<div style="color:#5a0099;font-weight:normal;padding:4px 0 4px 0;">2,299,608 bytes</div></fieldset>
 
 <fieldset id="ci_profiler_post" style="border:1px solid #009900;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">
 <legend style="color:#009900;">&nbsp;&nbsp;POST DATA&nbsp;&nbsp;</legend>
@@ -25,19 +25,31 @@
 
 <fieldset id="ci_profiler_uri_string" style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">
 <legend style="color:#000;">&nbsp;&nbsp;URI STRING&nbsp;&nbsp;</legend>
-<div style="color:#000;font-weight:normal;padding:4px 0 4px 0;">Hrm_salary/pay_sheet_form</div></fieldset>
+<div style="color:#000;font-weight:normal;padding:4px 0 4px 0;">Hrm_leaves/test</div></fieldset>
 
 <fieldset id="ci_profiler_controller_info" style="border:1px solid #995300;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">
 <legend style="color:#995300;">&nbsp;&nbsp;CLASS/METHOD&nbsp;&nbsp;</legend>
-<div style="color:#995300;font-weight:normal;padding:4px 0 4px 0;">Hrm_salary/pay_sheet_form</div></fieldset>
+<div style="color:#995300;font-weight:normal;padding:4px 0 4px 0;">Hrm_leaves/test</div></fieldset>
 
 <fieldset style="border:1px solid #0000FF;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">
-<legend style="color:#0000FF;">&nbsp;&nbsp;DATABASE:&nbsp; hrm (Hrm_salary:$db)&nbsp;&nbsp;&nbsp;QUERIES: 1 (0.0006 seconds)&nbsp;&nbsp;(<span style="cursor: pointer;" onclick="var s=document.getElementById('ci_profiler_queries_db_0').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Hide'?'Show':'Hide';">Hide</span>)</legend>
+<legend style="color:#0000FF;">&nbsp;&nbsp;DATABASE:&nbsp; hrm (Hrm_leaves:$db)&nbsp;&nbsp;&nbsp;QUERIES: 4 (0.0489 seconds)&nbsp;&nbsp;(<span style="cursor: pointer;" onclick="var s=document.getElementById('ci_profiler_queries_db_0').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Hide'?'Show':'Hide';">Hide</span>)</legend>
 
 
 <table style="width:100%;" id="ci_profiler_queries_db_0">
-<tr><td style="padding:5px;vertical-align:top;width:1%;color:#900;font-weight:normal;background-color:#ddd;">0.0006&nbsp;&nbsp;</td><td style="padding:5px;color:#000;font-weight:normal;background-color:#ddd;"><code><span style="color: #000000">
-<span style="color: #0000BB"><strong>SELECT</strong>&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">from&nbsp;person&nbsp;NATURAL&nbsp;JO<strong>IN</strong>&nbsp;&nbsp;employee&nbsp;</span>
+<tr><td style="padding:5px;vertical-align:top;width:1%;color:#900;font-weight:normal;background-color:#ddd;">0.0464&nbsp;&nbsp;</td><td style="padding:5px;color:#000;font-weight:normal;background-color:#ddd;"><code><span style="color: #000000">
+<span style="color: #0000BB"><strong>SELECT</strong>&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB"><strong>FROM</strong>&nbsp;leavedetails&nbsp;</span>
+</span>
+</code></td></tr>
+<tr><td style="padding:5px;vertical-align:top;width:1%;color:#900;font-weight:normal;background-color:#ddd;">0.0005&nbsp;&nbsp;</td><td style="padding:5px;color:#000;font-weight:normal;background-color:#ddd;"><code><span style="color: #000000">
+<span style="color: #0000BB"><strong>SELECT</strong>&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB"><strong>FROM</strong>&nbsp;leavedetails&nbsp;</span>
+</span>
+</code></td></tr>
+<tr><td style="padding:5px;vertical-align:top;width:1%;color:#900;font-weight:normal;background-color:#ddd;">0.0012&nbsp;&nbsp;</td><td style="padding:5px;color:#000;font-weight:normal;background-color:#ddd;"><code><span style="color: #000000">
+<span style="color: #0000BB"><strong>SELECT</strong>&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB"><strong>FROM</strong>&nbsp;leaves&nbsp;<strong>WHERE</strong>&nbsp;Start_Year</span><span style="color: #007700">=</span><span style="color: #DD0000">'2018'&nbsp;</span><span style="color: #007700"><strong>AND</strong>&nbsp;&nbsp;</span><span style="color: #0000BB">Start_Month</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'3'&nbsp;</span><span style="color: #007700"><strong>AND</strong>&nbsp;</span><span style="color: #0000BB">User_ID</span><span style="color: #007700">=</span><span style="color: #DD0000">'20180001W'&nbsp;</span><span style="color: #007700"><strong>AND</strong>&nbsp;</span><span style="color: #0000BB">Type</span><span style="color: #007700">=</span><span style="color: #DD0000">'Half'&nbsp;</span>
+</span>
+</code></td></tr>
+<tr><td style="padding:5px;vertical-align:top;width:1%;color:#900;font-weight:normal;background-color:#ddd;">0.0008&nbsp;&nbsp;</td><td style="padding:5px;color:#000;font-weight:normal;background-color:#ddd;"><code><span style="color: #000000">
+<span style="color: #0000BB"><strong>SELECT</strong>&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB"><strong>FROM</strong>&nbsp;leaves&nbsp;<strong>WHERE</strong>&nbsp;Start_Year</span><span style="color: #007700">=</span><span style="color: #DD0000">'2018'&nbsp;</span><span style="color: #007700"><strong>AND</strong>&nbsp;&nbsp;</span><span style="color: #0000BB">Start_Month</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'3'&nbsp;</span><span style="color: #007700"><strong>AND</strong>&nbsp;</span><span style="color: #0000BB">User_ID</span><span style="color: #007700">=</span><span style="color: #DD0000">'20180001W'&nbsp;</span><span style="color: #007700"><strong>AND</strong>&nbsp;</span><span style="color: #0000BB">Type</span><span style="color: #007700">=</span><span style="color: #DD0000">'Half'&nbsp;</span>
 </span>
 </code></td></tr>
 </table>
@@ -49,12 +61,12 @@
 
 <table style="width:100%;display:none;" id="ci_profiler_httpheaders_table">
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_ACCEPT&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</td></tr>
-<tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_USER_AGENT&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36</td></tr>
+<tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_USER_AGENT&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_CONNECTION&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">keep-alive</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">SERVER_PORT&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">80</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">SERVER_NAME&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">localhost</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">REMOTE_ADDR&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">::1</td></tr>
-<tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">SERVER_SOFTWARE&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">Apache/2.4.27 (Win32) OpenSSL/1.0.2l PHP/7.1.8</td></tr>
+<tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">SERVER_SOFTWARE&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">Apache/2.4.33 (Win32) OpenSSL/1.1.0g PHP/7.2.4</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_ACCEPT_LANGUAGE&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">en-US,en;q=0.9</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">SCRIPT_NAME&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">/HRM/index.php</td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">REQUEST_METHOD&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">GET</td></tr>
@@ -67,11 +79,7 @@
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_X_FORWARDED_FOR&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;"></td></tr>
 <tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">HTTP_DNT&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;"></td></tr>
 </table>
-</fieldset><fieldset id="ci_profiler_csession" style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;"><legend style="color:#000;">&nbsp;&nbsp;SESSION DATA&nbsp;&nbsp;(<span style="cursor: pointer;" onclick="var s=document.getElementById('ci_profiler_session_data').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Show'?'Hide':'Show';">Show</span>)</legend><table style="width:100%;display:none;" id="ci_profiler_session_data"><tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">__ci_last_regenerate&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">1524631162</td></tr>
-<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">id&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">2</td></tr>
-<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">username&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">admin</td></tr>
-<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">email&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">admin@admin.com</td></tr>
-<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">loggedin&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">1</td></tr>
+</fieldset><fieldset id="ci_profiler_csession" style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;"><legend style="color:#000;">&nbsp;&nbsp;SESSION DATA&nbsp;&nbsp;(<span style="cursor: pointer;" onclick="var s=document.getElementById('ci_profiler_session_data').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Show'?'Hide':'Show';">Show</span>)</legend><table style="width:100%;display:none;" id="ci_profiler_session_data"><tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">__ci_last_regenerate&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">1525968939</td></tr>
 </table>
 </fieldset>
 

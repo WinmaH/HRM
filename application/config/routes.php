@@ -57,7 +57,6 @@ $route['hrm_employee']='index.php/Hrm_employee/load';
 $route['HRM_SALARY']='index.php/Hrm_salary/index';
 
 
-
 $route['h_login']='Login/login1';
 $route['h_logout']='Login/login1';
 

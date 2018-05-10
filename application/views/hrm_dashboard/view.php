@@ -68,7 +68,7 @@
                                 <p>
                                     <div class="ui statistic">
                                       <div class="value">
-                                          <?php echo $tot_emp;?>
+                                          <?php echo $new_emp;?>
                                       </div>
                                       <div class="label">
                                           New Recruitments
@@ -151,12 +151,12 @@
 
                                 <div class="ui blue label">
                                     Present
-                                    <div class="detail">10</div>
+                                    <div class="detail"> <?php echo $present;?></div>
                                 </div>
 
                                 <div class="ui blue label">
                                     On Leave
-                                    <div class="detail">1</div>
+                                    <div class="detail"><?php echo $tot_emp-$present;?></div>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                                 </p>
                                 <div class="ui green label">
                                     Employee Partcipation
-                                    <div class="detail">1</div>
+                                    <div class="detail"><?php echo $program_count;?></div>
                                 </div>
                             </div>
                         </div>

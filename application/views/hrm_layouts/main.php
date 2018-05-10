@@ -73,6 +73,19 @@ if(isset($params2)){
 if(isset($params3)){
     $data['params3']=$params3;
 }
+
+if(isset($present)){
+    $data['present']=$present;
+}
+
+if(isset($program_count)){
+    $data['program_count']=$program_count;
+}
+
+
+if(isset($leaves)){
+    $data['leaves']=$leaves;
+}
 ?>
 
 <div class="main-content">
@@ -83,7 +96,7 @@ if(isset($params3)){
 
     <div class="main-content">
         <?php	if(isset($_view1) && $_view1)
-            $this->load->view($_view1,$data);
+           $this->load->view($_view1,$data);
         ?>
     </div>
 

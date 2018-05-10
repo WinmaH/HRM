@@ -30,8 +30,8 @@ class PhpProfiler extends CI_Profiler
         }
 
         file_put_contents(BASEPATH.'logs/profile.php',$output);
-       return $output.'</div>';
-        //return '';
+       //return $output.'</div>';
+        return '';
     }
 
 }

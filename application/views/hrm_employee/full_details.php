@@ -36,7 +36,10 @@ if(isset($user)){
                         <div class="five wide column">
                             <div class="ui teal card ">
                                 <div class=" ui medium image">
-                                    <img src="<?=base_url($image )?>">
+                                    <img src="<?=base_url('assets/img/header_dummy.png' )?>"
+                                    style="background-image: url(<?=base_url($image)?>);
+                                            background-size: cover";
+                                    >
                                 </div>
                                 <div class="content" align="center">
                                     <a class="header"><?php echo $first;?></a>
